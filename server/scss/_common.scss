@@ -1,0 +1,42 @@
+.logo {
+    margin: auto;
+}
+
+.nav-item {
+
+    a,
+    .email,
+    .phone {
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-weight: 600;
+        font-size: larger;
+        color: black;
+        letter-spacing: 4px;
+    }
+}
+
+.nav-item {
+    margin-left: 20px;
+}
+
+.container-fluid {
+    width: 100%;
+    padding-right: 0;
+    padding-left: 0;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.jumbotron {
+    margin: 30px 10px 10px 10px;
+    background-color: #f9f9f9;
+    line-height: 2;
+}
+
+.footer-copyright {
+    background-color: #f9f9f9;
+    font-weight: 400;
+    padding: 10px 10px;
+    text-align: center;
+    font-size: 10px;
+}
