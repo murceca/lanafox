@@ -1,18 +1,31 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const fs = require('fs');
+const hbs = require('hbs');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var photosRouter = require('./routes/photos');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const photosRouter = require('./routes/photos');
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+let partialsDir = path.join(__dirname,'views', 'partials');
+let partialsFilenames = fs.readdirSync(partialsDir);
+partialsFilenames.forEach(function (partialFile) {
+  let matches = /^([^.]+).hbs$/.exec(partialFile);
+  if (!matches) {
+    return;
+  }
+  let name = matches[1];
+  let template = fs.readFileSync(partialsDir + '/' + partialFile, 'utf8');
+  hbs.registerPartial(name, template);
+});
 
 app.use(logger('dev'));
 app.use(express.json());
