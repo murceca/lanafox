@@ -1,5 +1,6 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const ConcatPlugin = require('webpack-concat-plugin');
 const postcssPresetEnv = require("postcss-preset-env");
 // We are getting 'process.env.NODE_ENV' from the NPM scripts
 // Remember the 'dev' script?
@@ -109,6 +110,23 @@ module.exports = {
         // the location
         new MiniCssExtractPlugin({
             filename: devMode ? "stylesheets/main.css" : "stylesheets/main.min.css"
+        }),
+        new ConcatPlugin({
+            fileName: '[name].js',
+            filesToConcat: [
+                'jquery',
+                './node_modules/popper.js/dist/umd/popper.js',
+                'bootstrap',
+                'baguettebox.js',
+                './public/javascripts/**/!(main|sass).js'
+            ],
+            uglify: !devMode,
+            sourceMap: false,
+            name: 'main',
+            outputPath: './javascripts',
+            attributes: {
+                async: true
+            }
         })
     ]
 };
