@@ -1,4 +1,7 @@
 @import 'variables';
+@import './node_modules/bootstrap/scss/bootstrap';
+@import './node_modules/baguettebox.js/src/baguetteBox';
+//@import './node_modules/@fortawesome/fontawesome-free/scss/fontawesome';
 @import 'common';
 @import 'pages/index';
 @import 'pages/photos';
