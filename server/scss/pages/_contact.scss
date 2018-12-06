@@ -1,5 +1,6 @@
 .contact-title {
   color: $black-color;
+  font-family: $font-family;
   font-size: 35px;
   font-weight: 500;
   margin-bottom: 32px;
@@ -9,12 +10,20 @@
 .contact-page {
   background-image: url('/images/bg-contact.jpg');
 
+  .form-control {
+    background-color: $transparent-grey-color;
+  }
+
   .jumbotron {
+    background-color: $transparent-grey-color;
     margin-bottom: 30px;
     padding: 32px;
   }
 }
 
 .send-button {
+  background-color: $dark-grey-color;
+  font-family: $font-family;
+  font-weight: bold;
   width: 100%;
 }
