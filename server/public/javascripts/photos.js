@@ -1,3 +1,3 @@
 $(function () {
-    baguetteBox.run('.tz-gallery');
+    baguetteBox.run('.photo-gallery');
 });
