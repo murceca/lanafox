@@ -12,7 +12,7 @@ body {
       font-family: $font-family;
       font-size: larger;
       font-weight: 600;
-      letter-spacing: 4px;
+      letter-spacing: 3px;
     }
   }
 
@@ -22,7 +22,8 @@ body {
     font-family: $font-family;
     font-size: larger;
     font-weight: 600;
-    letter-spacing: 4px;
+    letter-spacing: 3px;
+    padding-left: 20px;
   }
 
   .container-fluid {
