@@ -1,7 +1,13 @@
-.block-about-title {
-  letter-spacing: 5px;
-  margin-bottom: 10px;
-  text-align: center;
+.block-about {
+  .block-about-title {
+    letter-spacing: 5px;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+  p {
+    text-indent: 20px;
+  }
 }
 
 .block-carousel {
