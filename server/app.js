@@ -7,7 +7,6 @@ const fs = require('fs');
 const hbs = require('hbs');
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
 const photosRouter = require('./routes/photos');
 const contactRouter = require('./routes/contact');
 
@@ -35,7 +34,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/photos', photosRouter);
 app.use('/contact', contactRouter);
 
