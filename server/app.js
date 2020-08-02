@@ -1,10 +1,11 @@
 const createError = require('http-errors');
 const express = require('express');
-const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const fs = require('fs');
 const hbs = require('hbs');
+
+const configs = require('./configs');
 
 const indexRouter = require('./routes/index');
 const photosRouter = require('./routes/photos');
@@ -13,9 +14,9 @@ const contactRouter = require('./routes/contact');
 const app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', configs.VIEWS_ABS_PATH);
 app.set('view engine', 'hbs');
-let partialsDir = path.join(__dirname,'views', 'partials');
+let partialsDir = configs.PARTIALS_ABS_PATH;
 let partialsFilenames = fs.readdirSync(partialsDir);
 partialsFilenames.forEach(function (partialFile) {
   let matches = /^([^.]+).hbs$/.exec(partialFile);
@@ -31,7 +32,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(configs.STATIC_ABS_PATH));
 
 app.use('/', indexRouter);
 app.use('/photos', photosRouter);
