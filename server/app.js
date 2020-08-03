@@ -28,6 +28,10 @@ partialsFilenames.forEach(function (partialFile) {
   hbs.registerPartial(name, template);
 });
 
+hbs.registerHelper('productionEnv', () => {
+  return process.env.NODE_ENV === 'production';
+});
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
