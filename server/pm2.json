@@ -1,0 +1,13 @@
+{
+  "apps": [
+    {
+      "name": "lanafox",
+      "script": "npm",
+      "args": "start",
+      "env": {
+        "PORT": "8000",
+        "NODE_ENV": "production"
+      }
+    }
+  ]
+}
