@@ -1,53 +1,68 @@
+html,
 body {
+  height: 100%;
+  margin: 0;
+}
 
-  .logo {
-    margin: auto;
-  }
+.logo {
+  margin: auto;
+}
 
-  .nav-item {
-    margin-left: 20px;
+.nav-item {
+  margin-left: 20px;
 
-    a {
-      color: $black-color;
-      font-family: $font-family;
-      font-size: larger;
-      font-weight: 600;
-      letter-spacing: 3px;
-    }
-  }
-
-  .phone,
-  .email {
+  a {
     color: $black-color;
     font-family: $font-family;
-    font-size: large;
+    font-size: larger;
     font-weight: 600;
     letter-spacing: 3px;
-    padding: 10px;
-    text-align: center;
   }
+}
+
+.phone,
+.email {
+  color: $black-color;
+  font-family: $font-family;
+  font-size: large;
+  font-weight: 600;
+  letter-spacing: 3px;
+  padding: 10px;
+  text-align: center;
+}
+
+.container-fluid {
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 100%;
+  width: 100%;
+}
+
+.jumbotron {
+  background-color: $grey-color;
+  line-height: 2;
+  margin: 30px 10px 10px;
+}
+
+.footer {
+  background-color: $white-color;
+  bottom: 0;
+  display: block;
+  height: 50px;
+  left: 0;
+  width: 100%;
 
   .logo-footer {
     text-align: center;
-  }
-
-  .container-fluid {
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-  }
-
-  .jumbotron {
-    background-color: $grey-color;
-    line-height: 2;
-    margin: 30px 10px 10px;
   }
 
   .footer-copyright {
     background-color: $grey-color;
     font-size: 10px;
     font-weight: 400;
+    height: 100%;
     padding: 10px;
     text-align: center;
+    width: 100%;
   }
 }
