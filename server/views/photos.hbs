@@ -4,9 +4,9 @@
     <div class="row mb-3">
       {{#each photos}}
         <div class="col-xs-12 col-lg-4">
-          <div class="card">
-            <a class="lightbox" href="{{this}}">
-              <img src="{{this}}" alt="" class="card-img-top">
+          <div class="card mb-30">
+            <a class="lightbox" href="{{this.photo}}">
+              <img src="{{this.preview}}" alt="{{this.altText}}" class="card-img-top">
             </a>
           </div>
         </div>
