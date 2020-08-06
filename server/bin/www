@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 const dotenv = require('dotenv');
-const envConfig = dotenv.config()
+const envConfig = dotenv.config();
 if (envConfig.error) {
-  throw envConfigenvConfig.error
+  throw envConfig.error;
 }
 console.log(`Starting app with following environment variables:`);
 for (let envVariable in envConfig.parsed) {
@@ -22,8 +22,8 @@ const http = require('http');
 /**
  * Get port from environment and store in Express.
  */
-
-const port = normalizePort(process.env.PORT || '3000');
+const configs = require('../configs');
+const port = normalizePort(configs.PORT);
 app.set('port', port);
 
 /**

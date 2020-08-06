@@ -9,6 +9,7 @@ module.exports = {
   PREVIEWS_REL_PATH: path.join('images', 'photos', 'previews'),
   PREVIEWS_ABS_PATH: path.join(__dirname, 'public', 'images', 'photos', 'previews'),
   IS_PRODUCTION_ENVIRONMENT: process.env.NODE_ENV === 'production',
+  PORT: process.env.PORT || 3000,
   DOMAIN_NAME: 'lanafox.info',
   CONTACT_EMAIL: 'contact@lanafox.info',
   SMTP_HOST: process.env.NODE_ENV === 'production' ? (process.env.SMTP_HOST || '') : 'smtp.ethereal.email',
