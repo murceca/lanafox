@@ -2,10 +2,8 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ConcatPlugin = require('webpack-concat-plugin');
 const postcssPresetEnv = require('postcss-preset-env');
-
-// We are getting 'process.env.NODE_ENV' from the NPM scripts
-// Remember the 'dev' script?
-const devMode = process.env.NODE_ENV !== 'production';
+const configs = require('./configs');
+const devMode = !configs.IS_PRODUCTION_ENVIRONMENT;
 
 module.exports = {
   // Tells Webpack which built-in optimizations to use
