@@ -4,6 +4,22 @@ body {
   margin: 0;
 }
 
+a {
+  color: $link-color;
+
+  &:hover {
+    color: $link-hover-color;
+  }
+
+  &:active {
+    color: $link-active-color;
+  }
+
+  &.disabled {
+    color: $link-disabled-color;
+  }
+}
+
 .logo {
   margin: auto;
 }
@@ -12,7 +28,6 @@ body {
   margin-left: 20px;
 
   a {
-    color: $black-color;
     font-family: $font-family;
     font-size: larger;
     font-weight: 600;

@@ -2,7 +2,12 @@ $white-color: #fff;
 $black-color: #000;
 $grey-color: #f9f9f9;
 $dark-grey-color: #45494c;
-$transparent-grey-color: rgba(255, 255, 255, .85);
+$primary: rgba($black-color, .5);
+$link-color: $primary;
+$link-hover-color: rgba($black-color, .7);
+$link-active-color: rgba($black-color, .9);
+$link-disabled-color: rgba($black-color, .3);
+$transparent-grey-color: rgba($white-color, .85);
 $font-family: 'Trebuchet MS',
 'Lucida Sans Unicode',
 'Lucida Grande',
