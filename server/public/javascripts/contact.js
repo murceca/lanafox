@@ -1,5 +1,4 @@
 $(function () {
-  console.log('Found ' + $('.js-contact-form').length + ' contact forms.');
   $('.js-contact-form').submit(function (event) {
     event.preventDefault();
     const $contactForm = $(this);
