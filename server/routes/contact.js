@@ -2,14 +2,15 @@ const express = require('express');
 const router = express.Router();
 
 /* GET contact page. */
-router.get('/', function (req, res, next) {
+router.get('/', function (req, res) {
   res.render('contact', {
-    title: 'Contact'
+    title: 'Contact',
+    isContactPage: true
   });
 });
 
 /* Contact form submit. */
-router.post('/', async function (req, res, next) {
+router.post('/', async function (req, res) {
   let emailSent = false;
   let emailData = {
     name: req.body.name,

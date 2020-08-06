@@ -4,7 +4,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Lana Fox Photography</title>
+  {{#if title}}
+      <title>{{title}} - Lana Fox Photography</title>
+  {{else}}
+      <title>Lana Fox Photography</title>
+  {{/if}}
   {{#if (productionEnv)}}
     <link rel="stylesheet" type="text/css" href="/stylesheets/main.min.css">
   {{else}}

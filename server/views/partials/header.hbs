@@ -13,15 +13,34 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarResponsive">
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="/#block-about">ABOUT ME</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/photos">PHOTOS</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/contact">CONTACT</a>
-      </li>
+      {{#if isHomePage}}
+        <li class="nav-item active">
+          <a class="nav-link" href="/#block-about">ABOUT ME</a>
+        </li>
+      {{else}}
+        <li class="nav-item">
+          <a class="nav-link" href="/#block-about">ABOUT ME</a>
+        </li>
+      {{/if}}
+      {{#if isPhotosPage}}
+        <li class="nav-item active">
+          <a class="nav-link" href="#">PHOTOS</a>
+        </li>
+      {{else}}
+        <li class="nav-item">
+          <a class="nav-link" href="/photos">PHOTOS</a>
+        </li>
+      {{/if}}
+      
+      {{#if isContactPage}}
+        <li class="nav-item active">
+          <a class="nav-link" href="#">CONTACT</a>
+        </li>
+      {{else}}
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">CONTACT</a>
+        </li>
+      {{/if}}
     </ul>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
