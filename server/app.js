@@ -4,13 +4,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const fs = require('fs');
 const hbs = require('hbs');
-
 const configs = require('./configs');
-
-const indexRouter = require('./routes/index');
-const photosRouter = require('./routes/photos');
-const contactRouter = require('./routes/contact');
-
 const app = express();
 
 // view engine setup
@@ -38,14 +32,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(configs.STATIC_ABS_PATH));
 
-app.use('/', indexRouter);
-app.use('/photos', photosRouter);
-app.use('/contact', contactRouter);
+app.use('/', require('./routes/index'));
+app.use('/photos', require('./routes/photos'));
+app.use('/contact', require('./routes/contact'));
+app.use(require('./routes/not-found'));
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+// app.use(function(req, res, next) {
+//   res.status(404).render
+// });
 
 // error handler
 app.use(function(err, req, res, next) {
