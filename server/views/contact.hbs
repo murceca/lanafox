@@ -1,6 +1,6 @@
 <div class="container-fluid contact-page">
   <div class="row justify-content-md-center">
-    <div class="jumbotron col-xs-12 col-md-5 col-lg-6">
+    <div class="jumbotron col-xs-12 col-md-8 col-lg-6">
       <form class="js-contact-form">
         <h3 class="contact-title">Get in touch!</h3>
         <div class="form-group">
@@ -14,6 +14,13 @@
         </div>
         <button type="submit" class="btn btn-secondary send-button">Contact Now</button>
       </form>
+      <div class="alert alert-danger js-contact-req-failed contact-req-failed" role="alert">
+        Sorry we couldn't process your request, please try again.
+      </div>
+      <div class="mx-5 js-contact-req-delivered contact-req-delivered">
+        <h5>Thank you for your message!</h5>
+        <p>We will get back to you as soon as possible.</p>
+      </div>
     </div>
   </div>
 </div>

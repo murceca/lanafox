@@ -18,6 +18,16 @@
     background-color: $transparent-grey-color;
     margin-bottom: 30px;
     padding: 32px;
+
+    .contact-req-failed,
+    .contact-req-delivered {
+      display: none;
+    }
+
+    .contact-req-delivered {
+      padding: 40px 0;
+      text-align: center;
+    }
   }
 }
 

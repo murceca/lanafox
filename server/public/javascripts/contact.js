@@ -1,6 +1,7 @@
 $(function () {
   $('.js-contact-form').submit(function (event) {
     event.preventDefault();
+    $('.js-contact-req-failed').hide();
     const $contactForm = $(this);
     const nameVal = $contactForm.find('.js-name-field').val();
     const emailVal = $contactForm.find('.js-email-field').val();
@@ -10,11 +11,12 @@ $(function () {
       email: emailVal,
       message: messageVal
     })
-      .done(data => {
-        console.log('Done: ' + data);
+      .done(() => {
+        $('.js-contact-form').hide(250);
+        $('.js-contact-req-delivered').show(500);
       })
-      .fail(error => {
-        console.log('Error: ' + error);
+      .fail(() => {
+        $('.js-contact-req-failed').show();
       });
   });
 });
