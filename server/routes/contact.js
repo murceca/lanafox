@@ -11,15 +11,22 @@ router.get('/', function (req, res, next) {
 /* Contact form submit. */
 router.post('/', async function (req, res, next) {
   let emailSent = false;
+  let emailData = {
+    name: req.body.name,
+    email: req.body.email,
+    message: req.body.message
+  };
+  let hasEmptyField = !!Object.values(emailData).filter(val => !val).length;
+  if (hasEmptyField) {
+    return res.sendStatus(400);
+  }
   try {
     const emailBody = await (async () => {
       return new Promise((resolve, reject) => {
-        res.render('contact-email', {
-          layout: null,
-          name: req.body.name,
-          email: req.body.email,
-          message: req.body.message
-        }, (error, data) => {
+        emailData = Object.assign(emailData, {
+          layout: null
+        });
+        res.render('contact-email', emailData, (error, data) => {
           if (error) {
             reject(error);
           }
@@ -35,9 +42,12 @@ router.post('/', async function (req, res, next) {
   } catch(error) {
     console.error(error);
   }
-  res.json({
-    success: emailSent
-  });
+
+  if (!emailSent) {
+    res.sendStatus(500);
+  } else {
+    res.sendStatus(200);
+  }
 });
 
 module.exports = router;
