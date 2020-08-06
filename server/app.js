@@ -29,7 +29,7 @@ partialsFilenames.forEach(function (partialFile) {
 });
 
 hbs.registerHelper('productionEnv', () => {
-  return process.env.NODE_ENV === 'production';
+  return configs.IS_PRODUCTION_ENVIRONMENT;
 });
 
 app.use(logger('dev'));
