@@ -1,13 +1,15 @@
-$white-color: #fff;
-$black-color: #000;
-$grey-color: #f9f9f9;
-$dark-grey-color: #45494c;
-$primary: rgba($black-color, .5);
-$link-color: $primary;
-$link-hover-color: rgba($black-color, .7);
-$link-active-color: rgba($black-color, .9);
-$link-disabled-color: rgba($black-color, .3);
-$transparent-grey-color: rgba($white-color, .85);
+$white: #fff;
+$black: #000;
+$grey: #ddd;
+$light-grey: #eee;
+$alabaster: #f9f9f9;
+$dark-grey: #45494c;
+$primary: rgba($black, .5);
+$primary-hightlighted: rgba($black, .7);
+$primary-active: rgba($black, .9);
+$primary-disabled: rgba($black, .3);
+$transparent-white-85: rgba($white, .85);
+$transparent-white-50: rgba($white, .5);
 $font-family: 'Trebuchet MS',
 'Lucida Sans Unicode',
 'Lucida Grande',

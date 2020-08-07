@@ -1,5 +1,5 @@
 .contact-title {
-  color: $black-color;
+  color: $black;
   font-family: $font-family;
   font-size: 35px;
   font-weight: 500;
@@ -11,11 +11,11 @@
   background-image: url('/images/bg-contact.jpg');
 
   .form-control {
-    background-color: $transparent-grey-color;
+    background-color: $transparent-white-85;
   }
 
   .jumbotron {
-    background-color: $transparent-grey-color;
+    background-color: $transparent-white-85;
     margin-bottom: 30px;
     padding: 32px;
 
@@ -32,7 +32,7 @@
 }
 
 .send-button {
-  background-color: $dark-grey-color;
+  background-color: $dark-grey;
   font-family: $font-family;
   font-size: 19px;
   font-weight: bold;

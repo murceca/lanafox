@@ -2,21 +2,35 @@ html,
 body {
   height: 100%;
   margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+  height: auto;
+  min-height: 100%;
+  padding: 0 0 190px;
+  position: relative;
+}
+
+@include media-breakpoint-up(lg) {
+  .wrapper {
+    padding: 0 0 90px;
+  }
 }
 
 a {
-  color: $link-color;
+  color: $primary;
 
   &:hover {
-    color: $link-hover-color;
+    color: $primary-hightlighted;
   }
 
   &:active {
-    color: $link-active-color;
+    color: $primary-active;
   }
 
   &.disabled {
-    color: $link-disabled-color;
+    color: $primary-disabled;
   }
 }
 
@@ -37,7 +51,7 @@ a {
 
 .phone,
 .email {
-  color: $black-color;
+  color: $black;
   font-family: $font-family;
   font-size: large;
   font-weight: 600;
@@ -54,17 +68,17 @@ a {
 }
 
 .jumbotron {
-  background-color: $grey-color;
+  background-color: $alabaster;
   line-height: 2;
   margin: 30px 10px 10px;
 }
 
 .footer {
-  background-color: $white-color;
+  background-color: $white;
   bottom: 0;
   display: block;
-  height: 50px;
   left: 0;
+  position: absolute;
   width: 100%;
 
   .logo-footer {
@@ -72,7 +86,7 @@ a {
   }
 
   .footer-copyright {
-    background-color: $grey-color;
+    background-color: $alabaster;
     font-size: 10px;
     font-weight: 400;
     height: 100%;
