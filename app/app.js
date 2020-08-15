@@ -1,30 +1,14 @@
-const createError = require('http-errors');
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const fs = require('fs');
-const hbs = require('hbs');
 const configs = require('./configs');
+const handlebars = require('./handlebars');
 const app = express();
 
 // view engine setup
 app.set('views', configs.VIEWS_ABS_PATH);
 app.set('view engine', 'hbs');
-let partialsDir = configs.PARTIALS_ABS_PATH;
-let partialsFilenames = fs.readdirSync(partialsDir);
-partialsFilenames.forEach(function (partialFile) {
-  let matches = /^([^.]+).hbs$/.exec(partialFile);
-  if (!matches) {
-    return;
-  }
-  let name = matches[1];
-  let template = fs.readFileSync(partialsDir + '/' + partialFile, 'utf8');
-  hbs.registerPartial(name, template);
-});
-
-hbs.registerHelper('productionEnv', () => {
-  return configs.IS_PRODUCTION_ENVIRONMENT;
-});
+handlebars.init();
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -36,11 +20,6 @@ app.use('/', require('./routes/index'));
 app.use('/photos', require('./routes/photos'));
 app.use('/contact', require('./routes/contact'));
 app.use(require('./routes/not-found'));
-
-// catch 404 and forward to error handler
-// app.use(function(req, res, next) {
-//   res.status(404).render
-// });
 
 // error handler
 app.use(function(err, req, res, next) {
