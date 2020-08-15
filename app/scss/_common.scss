@@ -49,6 +49,17 @@ a {
   }
 }
 
+@include media-breakpoint-down(md) {
+  .nav-page {
+    border-bottom: 1px solid $grey;
+    padding-bottom: 10px;
+  }
+
+  .nav-social {
+    padding-top: 10px;
+  }
+}
+
 .phone,
 .email {
   color: $black;
