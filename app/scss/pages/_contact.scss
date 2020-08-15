@@ -16,6 +16,10 @@
     background-color: $transparent-white-85;
   }
 
+  .message-field {
+    resize: none;
+  }
+
   .send-button {
     background-color: $dark-grey;
     font-family: $font-family;
