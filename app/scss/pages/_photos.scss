@@ -1,5 +1,13 @@
 .gallery-container {
   .card {
-    margin-bottom: 10px;
+    background: $black;
+    border: 0;
+    display: table;
+    height: 100%;
+
+    .lightbox {
+      display: table-cell;
+      vertical-align: middle;
+    }
   }
 }

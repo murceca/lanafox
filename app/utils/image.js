@@ -3,10 +3,10 @@ const junk = require('junk');
 const configs = require('../configs');
 
 class ImagesLoader {
-  getImages() {
+  getImages(options = {}) {
     const previewsList = this.previews;
     const photosList = this.photos;
-    const imagesMap = [];
+    let imagesMap = [];
 
     photosList.forEach(photo => {
       const imageData = {
@@ -21,7 +21,27 @@ class ImagesLoader {
       }
       imagesMap.push(imageData);
     });
+    imagesMap = imagesMap.reverse();
+    if (options.itemsInRow) {
+      imagesMap = this.structureItems(imagesMap, options.itemsInRow);
+    }
     return imagesMap;
+  }
+
+  structureItems(items, itemsInRow) {
+    const structuredItems = [];
+    let row = [];
+    items.forEach((selectedItem) => {
+      row.push(selectedItem);
+      if (row.length === itemsInRow) {
+        structuredItems.push(row);
+        row = [];
+      }
+    });
+    if (row.length) {
+      structuredItems.push(row);
+    }
+    return structuredItems;
   }
 
   get previews() {

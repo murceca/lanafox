@@ -1,17 +1,21 @@
 <hr>
 <div class="container-fluid gallery-container">
   <div class="photo-gallery">
-    <div class="row mb-3">
-      {{#each photos}}
-        <div class="col-xs-12 col-lg-4">
-          <div class="card mb-30">
-            <a class="lightbox" href="{{this.photo}}">
-              <img src="{{this.preview}}" alt="{{this.altText}}" class="card-img-top">
-            </a>
-          </div>
+    
+      {{#each photos as | line |}}
+        <div class="row">
+          {{#each line as | photo |}}
+            <div class="col-xs-12 col-lg-4 mb-3">
+              <div class="card">
+                <a class="lightbox" href="{{photo.photo}}">
+                  <img src="{{photo.preview}}" alt="{{photo.altText}}" class="card-img-top">
+                </a>
+              </div>
+            </div>
+          {{/each}}
         </div>
       {{/each}}
-    </div>
+    
   </div>
 </div>
 <hr>
