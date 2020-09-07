@@ -39,24 +39,24 @@ a {
 }
 
 .nav-item {
-  margin-left: 20px;
+  margin-left: 1.25rem;
 
   a {
     font-family: $font-family;
     font-size: larger;
     font-weight: 600;
-    letter-spacing: 3px;
+    letter-spacing: .18rem;
   }
 }
 
 @include media-breakpoint-down(md) {
   .nav-page {
     border-bottom: 1px solid $grey;
-    padding-bottom: 10px;
+    padding-bottom: .62rem;
   }
 
   .nav-social {
-    padding-top: 10px;
+    padding-top: .62rem;
   }
 }
 
@@ -65,10 +65,8 @@ a {
   color: $black;
   font-family: $font-family;
   font-size: large;
-  font-weight: 600;
-  letter-spacing: 3px;
-  padding: 10px;
-  text-align: center;
+  letter-spacing: 0.18rem;
+  padding: .62rem;
 }
 
 .container-fluid {
@@ -81,7 +79,7 @@ a {
 .jumbotron {
   background-color: $alabaster;
   line-height: 2;
-  margin: 30px 10px 10px;
+  margin: 1.87rem .62rem .62rem;
 }
 
 .footer {
@@ -92,17 +90,12 @@ a {
   position: absolute;
   width: 100%;
 
-  .logo-footer {
-    text-align: center;
-  }
-
   .footer-copyright {
     background-color: $alabaster;
-    font-size: 10px;
+    font-size: .62rem;
     font-weight: 400;
     height: 100%;
-    padding: 10px;
-    text-align: center;
+    padding: .62rem;
     width: 100%;
   }
 }
