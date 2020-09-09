@@ -1,29 +1,115 @@
 .block-about {
   .block-about-title {
-    letter-spacing: 5px;
-    margin-bottom: 15px;
-    text-align: center;
-  }
-
-  p {
-    text-indent: 20px;
+    letter-spacing: .31rem;
+    margin-bottom: .9rem;
   }
 }
 
-.block-carousel {
+.services-block {
+  background-color: $alabaster;
+  border: 1px solid $white;
+  line-height: 20rem;
   padding: 0;
+  color: $white;
+  text-align: center;
+  text-shadow: 1px 1px $black;
 
-  .carousel {
-    padding: 0;
+  &:hover {
+    border: 1px solid $white;
+    opacity: 1;
   }
+}
+
+@include media-breakpoint-only(xs) {
+  .services-block {
+    &:not(:hover) {
+      line-height: 5rem;
+    }
+  }
+}
+
+.portrait-block-services {
+  background: url('/images/photos/services/portrait-photo.jpg') $dark-grey;
+  background-size: cover;
+  filter: grayscale(1);
+  opacity: 0.7;
+}
+
+.landscape-block-services {
+  background: url('/images/photos/services/landscape-photo.jpg') $dark-grey;
+  background-size: cover;
+  filter: grayscale(1);
+  opacity: 0.7;
+}
+
+.product-block-services {
+  background: url('/images/photos/services/product-photo.jpg') $dark-grey;
+  background-size: cover;
+  filter: grayscale(1);
+  opacity: 0.7;
+}
+
+.event-block-services {
+  background: url('/images/photos/services/event-photo.jpg') $dark-grey;
+  background-size: cover;
+  filter: grayscale(1);
+  opacity: 0.7;
+}
+
+.wedding-block-services {
+  background: url('/images/photos/services/wedding-photo.jpg') $dark-grey;
+  background-size: cover;
+  filter: grayscale(1);
+  opacity: 0.7;
+}
+
+.travel-block-services {
+  background: url('/images/photos/services/travel-photo.jpg') $dark-grey;
+  background-size: cover;
+  filter: grayscale(1);
+  opacity: 0.7;
+}
+
+.lifestyle-block-services {
+  background: url('/images/photos/services/lifestyle-photo.jpg') $dark-grey;
+  background-size: cover;
+  filter: grayscale(1);
+  opacity: 0.7;
+}
+
+.fashion-block-services {
+  background: url('/images/photos/services/fashion-photo.jpg') $dark-grey;
+  background-size: cover;
+  filter: grayscale(1);
+  opacity: 0.7;
 }
 
 .blockquote-footer {
   text-align: right;
 }
 
-.testimonials-title {
-  letter-spacing: 5px;
-  margin: 40px 0;
+@include media-breakpoint-down(sm) {
+  .block-title {
+    font-size: 2.5rem;
+  }
+}
+
+.block-title {
+  letter-spacing: .37rem;
   text-align: center;
+}
+
+.testimonials-title {
+  font-size: 1.5em;
+  letter-spacing: .2rem;
+  margin: 1.25rem 0;
+  text-align: center;
+}
+
+.img-block-testimonials {
+  text-align: center;
+
+  img {
+   width: 27.5rem;
+  }
 }
