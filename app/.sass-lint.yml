@@ -1,4 +1,0 @@
-files:
-  include: 'scss/**/*.s+(a|c)ss'
-  ignore:
-    - 'node_modules/**/*.s+(a|c)ss'

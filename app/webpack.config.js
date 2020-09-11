@@ -1,7 +1,7 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ConcatPlugin = require('webpack-concat-plugin');
-const SassLintPlugin = require('sass-lint-webpack');
+const StylelintPlugin = require('stylelint-webpack-plugin');
 const postcssPresetEnv = require('postcss-preset-env');
 const configs = require('./configs');
 const devMode = !configs.IS_PRODUCTION_ENVIRONMENT;
@@ -128,6 +128,6 @@ module.exports = {
         async: true
       }
     }),
-    new SassLintPlugin()
+    new StylelintPlugin()
   ]
 };
