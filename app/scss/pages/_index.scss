@@ -5,7 +5,7 @@
   }
 }
 
-.services-block {
+.services {
   background-color: $alabaster;
   border: 1px solid $white;
   line-height: 20rem;
@@ -21,67 +21,57 @@
 }
 
 @include media-breakpoint-only(xs) {
-  .services-block {
+  .services {
     &:not(:hover) {
       line-height: 5rem;
     }
   }
 }
 
-.portrait-block-services {
-  background: url('/images/photos/services/portrait-photo.jpg') $dark-grey;
+.block-services {
   background-size: cover;
   filter: grayscale(1);
-  opacity: 0.7;
-}
+  opacity: .7;
 
-.landscape-block-services {
-  background: url('/images/photos/services/landscape-photo.jpg') $dark-grey;
-  background-size: cover;
-  filter: grayscale(1);
-  opacity: 0.7;
-}
+  &-portrait {
+    @extend .block-services;
+    background: url('/images/photos/services/portrait-photo.jpg') $dark-grey;
+  }
 
-.product-block-services {
-  background: url('/images/photos/services/product-photo.jpg') $dark-grey;
-  background-size: cover;
-  filter: grayscale(1);
-  opacity: 0.7;
-}
+  &-landscape {
+    @extend .block-services;
+    background: url('/images/photos/services/landscape-photo.jpg') $dark-grey;
+  }
 
-.event-block-services {
-  background: url('/images/photos/services/event-photo.jpg') $dark-grey;
-  background-size: cover;
-  filter: grayscale(1);
-  opacity: 0.7;
-}
+  &-product {
+    @extend .block-services;
+    background: url('/images/photos/services/product-photo.jpg') $dark-grey;
+  }
 
-.wedding-block-services {
-  background: url('/images/photos/services/wedding-photo.jpg') $dark-grey;
-  background-size: cover;
-  filter: grayscale(1);
-  opacity: 0.7;
-}
+  &-event {
+    @extend .block-services;
+    background: url('/images/photos/services/event-photo.jpg') $dark-grey;
+  }
 
-.travel-block-services {
-  background: url('/images/photos/services/travel-photo.jpg') $dark-grey;
-  background-size: cover;
-  filter: grayscale(1);
-  opacity: 0.7;
-}
+  &-wedding {
+    @extend .block-services;
+    background: url('/images/photos/services/wedding-photo.jpg') $dark-grey;
+  }
 
-.lifestyle-block-services {
-  background: url('/images/photos/services/lifestyle-photo.jpg') $dark-grey;
-  background-size: cover;
-  filter: grayscale(1);
-  opacity: 0.7;
-}
+  &-travel {
+    @extend .block-services;
+    background: url('/images/photos/services/travel-photo.jpg') $dark-grey;
+  }
 
-.fashion-block-services {
-  background: url('/images/photos/services/fashion-photo.jpg') $dark-grey;
-  background-size: cover;
-  filter: grayscale(1);
-  opacity: 0.7;
+  &-lifestyle {
+    @extend .block-services;
+    background: url('/images/photos/services/lifestyle-photo.jpg') $dark-grey;
+  }
+
+  &-fashion {
+    @extend .block-services;
+    background: url('/images/photos/services/fashion-photo.jpg') $dark-grey;
+  }
 }
 
 .blockquote-footer {
