@@ -3,9 +3,9 @@ const router = express.Router();
 const imageUtils = require('../utils/image');
 
 /* GET photos page. */
-router.get('/', function(req, res) {
+router.get('/', async function(req, res) {
   const imagesLoader = new imageUtils.ImagesLoader();
-  const photos = imagesLoader.getImages({
+  const photos = await imagesLoader.getImages({
     itemsInRow: 3
   });
   res.render('photos', {

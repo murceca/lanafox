@@ -1,31 +1,21 @@
-const fs = require('fs');
-const junk = require('junk');
-const configs = require('../configs');
+const cloudinary = require('cloudinary').v2;
 
 class ImagesLoader {
-  getImages(options = {}) {
-    const previewsList = this.previews;
-    const photosList = this.photos;
-    let imagesMap = [];
-
-    photosList.forEach(photo => {
-      const imageData = {
-        photo: this.buildFullPhotoUrl(photo),
-        altText: this.getAltText(photo)
+  async getImages(options = {}) {
+    const data = await cloudinary.search
+      .expression('folder:photos')
+      .with_field('context')
+      .sort_by('public_id', 'desc')
+      .max_results(90)
+      .execute();
+    const images = data.resources.map((res) => {
+      return {
+        photo: res.secure_url,
+        altText: this.getAltText(res),
+        preview: this.getPreviewUrl(res)
       };
-      const hasPreview = previewsList.indexOf(photo) !== -1;
-      if (hasPreview) {
-        imageData.preview = this.buildFullPreviewUrl(photo);
-      } else {
-        imageData.preview = imageData.photo;
-      }
-      imagesMap.push(imageData);
     });
-    imagesMap = imagesMap.reverse();
-    if (options.itemsInRow) {
-      imagesMap = this.structureItems(imagesMap, options.itemsInRow);
-    }
-    return imagesMap;
+    return this.structureItems(images, options.itemsInRow);
   }
 
   structureItems(items, itemsInRow) {
@@ -44,37 +34,20 @@ class ImagesLoader {
     return structuredItems;
   }
 
-  get previews() {
-    return fs.readdirSync(configs.PREVIEWS_ABS_PATH).filter(junk.not);
+  getPreviewUrl(res) {
+    let transformationType;
+    if (res.width < res.height) {
+      transformationType = 'tall-photos-preview';
+    } else {
+      transformationType = 'wide-photos-preview';
+    }
+    return cloudinary.url(res.public_id, {
+      transformation: [transformationType]
+    });
   }
 
-  get photos() {
-    return fs.readdirSync(configs.PHOTOS_ABS_PATH).filter(junk.not);
-  }
-
-  buildFullPhotoUrl(photoFileName) {
-    return `${configs.PHOTOS_REL_PATH}/${photoFileName}`;
-  }
-
-  buildFullPreviewUrl(previewFileName) {
-    return `${configs.PREVIEWS_REL_PATH}/${previewFileName}`;
-  }
-
-  getAltText(photoFileName) {
-    // Remove extension
-    let altText = photoFileName.split('.');
-    altText.pop();
-
-    // Remove index (first part of the name usually)
-    altText = altText.join('');
-    altText = altText.split('_');
-    altText.shift();
-
-    // Replace underscore symbols with spaces
-    altText = altText.join(' ');
-    altText = altText.charAt(0).toUpperCase() + altText.slice(1);
-
-    return altText;
+  getAltText(res) {
+    return res.context && res.context.alt;
   }
 }
 

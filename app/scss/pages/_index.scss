@@ -15,8 +15,8 @@
   text-shadow: 1px 1px $black;
 
   &:hover {
-    border: 1px solid $white;
-    opacity: 1;
+    opacity: .85;
+    filter: grayscale(.15);
   }
 }
 
@@ -29,7 +29,7 @@
 }
 
 .block-services {
-  background-size: cover;
+  background-size: cover !important;
   filter: grayscale(1);
   opacity: .7;
 
