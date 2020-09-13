@@ -42,7 +42,8 @@ class ImagesLoader {
       transformationType = 'wide-photos-preview';
     }
     return cloudinary.url(res.public_id, {
-      transformation: [transformationType]
+      transformation: [transformationType],
+      secure: true
     });
   }
 
