@@ -28,49 +28,44 @@
   }
 }
 
-.block-services {
-  background-size: cover !important;
+@mixin service-item($img) {
+  background: url($img) $dark-grey;
+  background-size: cover;
   filter: grayscale(1);
   opacity: .7;
+}
 
+.block-services {
   &-portrait {
-    @extend .block-services;
-    background: url('/images/photos/services/portrait-photo.jpg') $dark-grey;
+    @include service-item('/images/photos/services/portrait-photo.jpg');
   }
 
   &-landscape {
-    @extend .block-services;
-    background: url('/images/photos/services/landscape-photo.jpg') $dark-grey;
+    @include service-item('/images/photos/services/landscape-photo.jpg');
   }
 
   &-product {
-    @extend .block-services;
-    background: url('/images/photos/services/product-photo.jpg') $dark-grey;
+    @include service-item('/images/photos/services/product-photo.jpg');
   }
 
   &-event {
-    @extend .block-services;
-    background: url('/images/photos/services/event-photo.jpg') $dark-grey;
+    @include service-item('/images/photos/services/event-photo.jpg');
   }
 
   &-wedding {
-    @extend .block-services;
-    background: url('/images/photos/services/wedding-photo.jpg') $dark-grey;
-  }
-
-  &-travel {
-    @extend .block-services;
-    background: url('/images/photos/services/travel-photo.jpg') $dark-grey;
-  }
-
-  &-lifestyle {
-    @extend .block-services;
-    background: url('/images/photos/services/lifestyle-photo.jpg') $dark-grey;
+    @include service-item('/images/photos/services/wedding-photo.jpg');
   }
 
   &-fashion {
-    @extend .block-services;
-    background: url('/images/photos/services/fashion-photo.jpg') $dark-grey;
+    @include service-item('/images/photos/services/fashion-photo.jpg');
+  }
+
+  &-lifestyle {
+    @include service-item('/images/photos/services/lifestyle-photo.jpg');
+  }
+
+  &-editing {
+    @include service-item('/images/photos/services/editing-photo.jpg');
   }
 }
 
