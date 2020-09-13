@@ -28,7 +28,7 @@ jobs:
         env:
           dest: '${{secrets.DEPLOY_USER}}@${{secrets.DEPLOY_SERVER}}:${{secrets.DEPLOY_DIR}}'
         run: |
-          echo "${{secrets.DEPLOY_KEY}}" > DEPLOY_KEY_key
+          echo "${{secrets.DEPLOY_KEY}}" > deploy_key
           chmod 600 ./deploy_key
           rsync -chav --delete \
             -e 'ssh -i ./deploy_key -o StrictHostKeyChecking=no' \
