@@ -17,7 +17,7 @@ app.use(cookieParser());
 app.use(express.static(configs.STATIC_ABS_PATH));
 
 app.use('/', require('./routes/index'));
-app.use('/photos', require('./routes/photos'));
+app.use('/portfolio', require('./routes/portfolio'));
 app.use('/contact', require('./routes/contact'));
 app.use(require('./routes/not-found'));
 
