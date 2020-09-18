@@ -16,6 +16,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(configs.STATIC_ABS_PATH));
 
+app.use(function(req, res, next) {
+  res.locals.canonicalUrl = `${req.protocol}://${req.get('host') + req.originalUrl}`;
+  res.locals.host = `${req.protocol}://${req.get('host')}`;
+  next();
+});
+
 app.use('/', require('./routes/index'));
 app.use('/portfolio', require('./routes/portfolio'));
 app.use('/contact', require('./routes/contact'));
