@@ -2,7 +2,7 @@
   "watch": [
     "*.*"
   ],
-  "ext": "js, json, hbs, .env",
+  "ext": "js, json, hbs",
   "ignore": [
     "./public/",
     "./client/"
