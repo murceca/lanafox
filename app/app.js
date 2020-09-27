@@ -21,7 +21,7 @@ i18n.configure({
   directory: __dirname + '/locales',
   directoryPermissions: '755',
   autoReload: true,
-  updateFiles: true  // TODO: change to false
+  updateFiles: false
 });
 app.use(i18n.init);
 
