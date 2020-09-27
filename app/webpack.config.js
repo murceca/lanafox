@@ -1,3 +1,9 @@
+const dotenv = require('dotenv');
+const envConfig = dotenv.config();
+if (envConfig.error) {
+  throw envConfig.error;
+}
+
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ConcatPlugin = require('webpack-concat-plugin');
@@ -11,8 +17,8 @@ module.exports = {
   // If you leave this out, Webpack will default to 'production'
   mode: devMode ? 'development' : 'production',
   // Webpack needs to know where to start the bundling process,
-  // so we define the Sass file under './scss' directory
-  entry: ['./scss/main.scss'],
+  // so we define the Sass file under './client/scss' directory
+  entry: ['./client/scss/main.scss'],
   // This is where we define the path where Webpack will place
   // a bundled JS file. Webpack needs to produce this file,
   // but for our purposes you can ignore it
@@ -21,7 +27,7 @@ module.exports = {
     // Specify the base path for all the scss within your
     // application. This is relative to the output path, so in
     // our case it will be './public/stylesheets'
-    publicPath: '/stylesheets',
+    publicPath: 'stylesheets',
     // The name of the output bundle. Path is also relative
     // to the output path, so './public/javascripts'
     filename: 'javascripts/sass.js'
@@ -118,12 +124,12 @@ module.exports = {
         './node_modules/popper.js/dist/umd/popper.js',
         'bootstrap',
         'baguettebox.js',
-        './public/javascripts/**/!(main|sass).js'
+        './client/javascripts/**/*.js'
       ],
       uglify: !devMode,
-      sourceMap: false,
+      sourceMap: devMode,
       name: 'main',
-      outputPath: './javascripts',
+      outputPath: 'javascripts',
       attributes: {
         async: true
       }
