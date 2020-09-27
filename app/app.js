@@ -37,7 +37,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use('/', require('./routes/index'));
+app.use('/', require('./routes/about-me'));
 app.use('/portfolio', require('./routes/portfolio'));
 app.use('/contact', require('./routes/contact'));
 app.use(require('./routes/not-found'));
