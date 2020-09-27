@@ -1,5 +1,5 @@
 $(function () {
-  $('.js-contact-form').submit(function (event) {
+  $('.js-contact-form').on('submit', function (event) {
     event.preventDefault();
     $('.js-contact-req-failed').hide();
     const $contactForm = $(this);

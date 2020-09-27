@@ -1,0 +1,11 @@
+{
+  "watch": [
+    "*.*"
+  ],
+  "ext": "js, json, hbs",
+  "ignore": [
+    "./public/",
+    "./client/"
+  ],
+  "delay": "1"
+}
