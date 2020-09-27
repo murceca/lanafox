@@ -1,8 +1,5 @@
 const dotenv = require('dotenv');
-const envConfig = dotenv.config();
-if (envConfig.error) {
-  throw envConfig.error;
-}
+dotenv.config();
 
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
