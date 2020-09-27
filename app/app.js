@@ -3,12 +3,27 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const configs = require('./configs');
 const handlebars = require('./handlebars');
+const i18n = require('i18n');
 const app = express();
 
 // view engine setup
 app.set('views', configs.VIEWS_ABS_PATH);
 app.set('view engine', 'hbs');
 handlebars.init();
+
+// localization
+i18n.configure({
+  locales: ['uk', 'en'],
+  fallbacks: {'uk': 'en'},
+  defaultLocale: 'en',
+  cookie: 'locale',
+  queryParameter: 'lang',
+  directory: __dirname + '/locales',
+  directoryPermissions: '755',
+  autoReload: true,
+  updateFiles: true  // TODO: change to false
+});
+app.use(i18n.init);
 
 app.use(logger('dev'));
 app.use(express.json());
