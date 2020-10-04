@@ -15,30 +15,30 @@
     <ul class="navbar-nav ml-auto nav-page">
       {{#if isHomePage}}
         <li class="nav-item active">
-          <a class="nav-link" href="/#block-about">ABOUT ME</a>
+          <a class="nav-link" href="/#block-about">{{__ "partials.header.nav.about_me"}}</a>
         </li>
       {{else}}
         <li class="nav-item">
-          <a class="nav-link" href="/#block-about">ABOUT ME</a>
+          <a class="nav-link" href="/#block-about">{{__ "partials.header.nav.about_me"}}</a>
         </li>
       {{/if}}
       {{#if isPortfolioPage}}
         <li class="nav-item active">
-          <a class="nav-link" href="#">PORTFOLIO</a>
+          <a class="nav-link" href="#">{{__ "partials.header.nav.portfolio"}}</a>
         </li>
       {{else}}
         <li class="nav-item">
-          <a class="nav-link" href="/portfolio">PORTFOLIO</a>
+          <a class="nav-link" href="/portfolio">{{__ "partials.header.nav.portfolio"}}</a>
         </li>
       {{/if}}
       
       {{#if isContactPage}}
         <li class="nav-item active">
-          <a class="nav-link" href="#">CONTACT</a>
+          <a class="nav-link" href="#">{{__ "partials.header.nav.contact"}}</a>
         </li>
       {{else}}
         <li class="nav-item">
-          <a class="nav-link" href="/contact">CONTACT</a>
+          <a class="nav-link" href="/contact">{{__ "partials.header.nav.contact"}}</a>
         </li>
       {{/if}}
     </ul>
