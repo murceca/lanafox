@@ -28,6 +28,20 @@
       "testimonials_1_footer": "Я з нетерпінням чекаю співпраці з тобою знову!",
       "testimonials_1_footer_city": "Вінниця,",
       "testimonials_1_footer_name": "Марина"
+    },
+    "contact": {
+      "contact_title": "Зв'язатися!",
+      "placeholder_name": "Ваше ім'я",
+      "placeholder_email": "Ваша електронна адреса",
+      "placeholder_message": "Повідомлення",
+      "submit_button": "Надіслати",
+      "contact_req_failed": "На жаль, нам не вдалося обробити ваш запит, спробуйте ще раз.",
+      "contact_req_delivered_msg1": "Спасибі за Ваше повідомлення!",
+      "contact_req_delivered_msg2": "Ми зв’яжемося з вами якомога швидше."
+    },
+    "not_found": {
+      "message": "На жаль, ми не змогли знайти цю сторінку",
+      "alt": "Сторінку не знайдено!"
     }
   },
   "partials": {

@@ -1,14 +1,14 @@
 <div class="container-fluid not-found-page">
   <div class="not-found-page-photo-frame">
     <h3 class="not-found-label">
-      Sorry, we couldn't find that page
+      {{__ "pages.not_found.message"}}
     </h3>
     <picture>
       <source media="(min-width:1920px)" srcset="/images/not-found/1920w.jpg">
       <source media="(min-width:1200px)" srcset="/images/not-found/1200w.jpg">
       <source media="(min-width:720px)" srcset="/images/not-found/720w.jpg">
       <img src="/images/not-found/480w.jpg"
-        alt="Page not found!"
+        alt="{{__ "pages.not_found.alt"}}"
         class="not-found-image">
     </picture>
   </div>

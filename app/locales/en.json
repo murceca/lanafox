@@ -28,6 +28,20 @@
       "testimonials_footer": "I look forward to working with you again!",
       "testimonials_footer_city": "Vinnytsia,",
       "testimonials_footer_name": "Maryna"
+    },
+    "contact": {
+      "contact_title": "Get in touch!",
+      "placeholder_name": "Your Name",
+      "placeholder_email": "Your Email",
+      "placeholder_message": "Message",
+      "submit_button": "Contact Now",
+      "contact_req_failed": "Sorry we couldn't process your request, please try again.",
+      "contact_req_delivered_msg1": "Thank you for your message!",
+      "contact_req_delivered_msg2": "We will reach you as soon as possible."
+    },
+    "not_found": {
+      "message": "Sorry, we couldn't find that page",
+      "alt": "Page not found!"
     }
   },
   "partials": {
