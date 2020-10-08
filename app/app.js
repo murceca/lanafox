@@ -25,6 +25,10 @@ i18n.configure({
   objectNotation: true
 });
 app.use(i18n.init);
+app.use(function(req, res, next) {
+  res.locals.activeLocale = req.getLocale();
+  next();
+});
 
 app.use(logger('dev'));
 app.use(express.json());

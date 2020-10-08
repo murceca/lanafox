@@ -22,6 +22,10 @@ const registerHelpers = () => {
     return configs.IS_PRODUCTION_ENVIRONMENT;
   });
 
+  hbs.registerHelper('equal', (item1, item2) => {
+      return item1 === item2;
+  });
+
   hbs.registerHelper('__', function () {
     return i18n.__.apply(this, arguments);
   });

@@ -69,6 +69,21 @@ a {
   padding: .62rem;
 }
 
+.language-wrapper {
+  padding: .62rem;
+
+  .language {
+    max-width: 1.5rem;
+    max-height: 1.5rem;
+    opacity: .5;
+
+    &:hover,
+    &.active {
+      opacity: 1;
+    }
+  }
+}
+
 .container-fluid {
   margin-left: auto;
   margin-right: auto;
