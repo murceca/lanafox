@@ -4,21 +4,19 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description"
-        content="My name is Svitlana and I'm a photographer based in Vinnytsia, Ukraine.
-                I will be happy to help you capture the wonderful moments of your life.">
-  <meta name="author" content="Svitlana Hryshchuk">
-  <meta property="og:title" content="Lana Fox Photography">
+  <meta name="description" content="{{__ "pages.layout.meta_description"}}">
+  <meta name="author" content="{{__ "pages.layout.meta_author"}}">
+  <meta property="og:title" content="{{__ "pages.layout.title"}}">
   <meta property="og:type" content="website">
-  <meta property="og:description" content="I will be happy to help you capture the wonderful moments of your life.">
+  <meta property="og:description" content="{{__ "pages.layout.meta_content"}}">
   <meta property="og:image" content="{{host}}/images/carousel-images/pic2.jpeg">
   <meta property="og:url" content="{{canonicalUrl}}">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="{{canonicalUrl}}">
   {{#if title}}
-      <title>{{title}} - Lana Fox Photography</title>
+      <title>{{title}} - {{__ "pages.layout.title"}}</title>
   {{else}}
-      <title>Lana Fox Photography</title>
+      <title>{{__ "pages.layout.title"}}</title>
   {{/if}}
   {{#if (productionEnv)}}
     <link rel="stylesheet" type="text/css" href="/stylesheets/main.min.css">

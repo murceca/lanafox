@@ -42,6 +42,12 @@
     "not_found": {
       "message": "Sorry, we couldn't find that page",
       "alt": "Page not found!"
+    },
+    "layout": {
+      "meta_description": "My name is Svitlana and I'm a photographer based in Vinnytsia, Ukraine. I will be happy to help you capture the wonderful moments of your life.",
+      "meta_author": "Svitlana Hryshchuk",
+      "meta_content": "I will be happy to help you capture the wonderful moments of your life.",
+      "title": "Lana Fox Photography"
     }
   },
   "partials": {
