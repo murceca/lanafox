@@ -1,0 +1,59 @@
+{
+  "pages": {
+    "about_me": {
+      "carousel_alt_1": "Beautiful autumn",
+      "carousel_alt_2": "Photo with fallen leaves",
+      "carousel_alt_3": "Beautiful interior of the hotel",
+      "about_block_photo_alt": "Photo of Sveta",
+      "about_block": "Lana Fox Photographer, Vinnytsia",
+      "description": "<p>Hey there! My name is Svitlana and I'm a photographer based in Vinnytsia, Ukraine.</p> <p>I'm passionate about photography, music, and programming. In my work, I usually use the Nikon DSLR camera, which helps me to shoot high-quality photos. Also, I'm pretty good at post-processing techniques, so you can be sure I'll bring even more life, colors, and style in your photo album! I will be happy to help you capture the wonderful moments of your life.</p><p> Feel free to <a class=\"link-to-contact-page\" href=\"/contact\"> contact me </a> and thank you for taking time to look at my site and works. I hope to meet you in the near future.</p>",
+      "footer_text": "Your personal photographer,",
+      "footer_name": "Lana Fox",
+      "services": "SERVICES",
+      "services_portrait": "PORTRAIT PHOTOGRAPHY",
+      "services_landscape": "LANDSCAPE PHOTOGRAPHY",
+      "services_product": "PRODUCT PHOTOGRAPHY",
+      "services_event": "EVENT PHOTOGRAPHY",
+      "services_wedding": "WEDDING PHOTOGRAPHY",
+      "services_lifestyle": "LIFESTYLE PHOTOGRAPHY",
+      "services_fashion": "FASHION PHOTOGRAPHY",
+      "services_editing": "PHOTO RETOUCHING",
+      "testimonials": "TESTIMONIALS",
+      "testimonials_1_photo_alt": "Photo of Maryna",
+      "testimonials_1_title": "Thank you Svitlana for a fantastic photoshoot!",
+      "testimonials_1_description": "<p>Svitlana, I'm extremely gladful for your excellent work and big efforts. You're always a nice and positive person.</p> <p>I used to be shy and usually, I feel a bit uncomfortable on the photoshoot. But with you, it was a completely different thing. I was able to relax and have fun.</p> <p>As a result, we created a set of really incredible photos! I want to look at them again and again :) Some of them revealed to me differently over time and I like them even more now. On the photos, I'm always real and that's what I really appreciate.</p>",
+      "testimonials_1_footer": "I look forward to working with you again!",
+      "testimonials_1_footer_city": "Vinnytsia,",
+      "testimonials_1_footer_name": "Maryna"
+    },
+    "contact": {
+      "contact_title": "Get in touch!",
+      "placeholder_name": "Your Name",
+      "placeholder_email": "Your Email",
+      "placeholder_message": "Message",
+      "submit_button": "Contact Now",
+      "contact_req_failed": "Sorry we couldn't process your request, please try again.",
+      "contact_req_delivered_msg1": "Thank you for your message!",
+      "contact_req_delivered_msg2": "We will reach you as soon as possible."
+    },
+    "not_found": {
+      "message": "Sorry, we couldn't find that page",
+      "alt": "Page not found!"
+    },
+    "layout": {
+      "meta_description": "My name is Svitlana and I'm a photographer based in Vinnytsia, Ukraine. I will be happy to help you capture the wonderful moments of your life.",
+      "meta_author": "Svitlana Hryshchuk",
+      "meta_content": "I will be happy to help you capture the wonderful moments of your life.",
+      "title": "Lana Fox Photographer, Vinnytsia"
+    }
+  },
+  "partials": {
+    "header": {
+      "nav": {
+        "about_me": "ABOUT ME",
+        "portfolio": "PORTFOLIO",
+        "contact": "CONTACT"
+      }
+    }
+  }
+}

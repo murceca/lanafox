@@ -2,24 +2,24 @@
   <div class="row justify-content-md-center">
     <div class="jumbotron col-12 col-md-10 col-lg-8">
       <form class="js-contact-form">
-        <h1 class="contact-title">Get in touch!</h1>
+        <h1 class="contact-title">{{__ "pages.contact.contact_title"}}</h1>
         <div class="form-group">
-          <input type="text" class="form-control js-name-field" placeholder="Your Name" required>
+          <input type="text" class="form-control js-name-field" placeholder="{{__ "pages.contact.placeholder_name"}}" required>
         </div>
         <div class="form-group">
-          <input type="email" class="form-control js-email-field" placeholder="Your Email" required>
+          <input type="email" class="form-control js-email-field" placeholder="{{__ "pages.contact.placeholder_email"}}" required>
         </div>
         <div class="form-group">
-          <textarea class="form-control js-message-field message-field" rows="7" placeholder="Message" required></textarea>
+          <textarea class="form-control js-message-field message-field" rows="7" placeholder="{{__ "pages.contact.placeholder_message"}}" required></textarea>
         </div>
-        <button type="submit" class="btn btn-secondary send-button">Contact Now</button>
+        <button type="submit" class="btn btn-secondary send-button">{{__ "pages.contact.submit_button"}}</button>
       </form>
       <div class="alert alert-danger js-contact-req-failed contact-req-failed" role="alert">
-        Sorry we couldn't process your request, please try again.
+        {{{__ "pages.contact.contact_req_failed"}}}
       </div>
       <div class="mx-5 js-contact-req-delivered contact-req-delivered">
-        <p class="h3">Thank you for your message!</p>
-        <p>We will reach you as soon as possible.</p>
+        <p class="h3">{{__ "pages.contact.contact_req_delivered_msg1"}}</p>
+        <p>{{__ "pages.contact.contact_req_delivered_msg2"}}</p>
       </div>
     </div>
   </div>

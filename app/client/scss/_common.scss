@@ -69,6 +69,31 @@ a {
   padding: .62rem;
 }
 
+.language-wrapper {
+  padding: .62rem;
+
+  .language {
+    max-width: 1.5rem;
+    max-height: 1.5rem;
+    opacity: .5;
+
+    &:hover,
+    &.active {
+      opacity: 1;
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    .language-en-block {
+      text-align: left;
+    }
+
+    .language-uk-block {
+      text-align: right;
+    }
+  }
+}
+
 .container-fluid {
   margin-left: auto;
   margin-right: auto;

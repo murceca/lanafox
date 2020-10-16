@@ -11,10 +11,24 @@
           <a href="mailto:contact@lanafox.info">contact&#64;lanafox.info</a>
         </i>
       </div>
-      <div class="col-12 col-lg-4 phone">
+      <div class="col-12 col-lg-3 phone">
         <i class="fas fa-phone-square">
           <a href="tel:+380987034015">+380987034015</a>
         </i>
+      </div>
+      <div class="col-12 col-lg-1 language-wrapper">
+        <div class="row">
+          <div class="col-6 language-uk-block">
+            <a class="language {{#if (equal activeLocale 'uk')}} active {{/if}}" href="?lang=uk">
+              <img class="img-fluid" src="../images/language-icons/ukraine.png">
+            </a>
+          </div>
+          <div class="col-6 language-en-block">
+            <a class="language {{#if (equal activeLocale 'en')}} active {{/if}}" href="?lang=en">
+              <img class="img-fluid" src="../images/language-icons/united-kingdom.png">
+            </a>
+          </div>
+        </div>
       </div>
     </div>
     <div class="row">

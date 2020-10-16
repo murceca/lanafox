@@ -5,7 +5,8 @@
   "ext": "js, json, hbs",
   "ignore": [
     "./public/",
-    "./client/"
+    "./client/",
+    "./locales/"
   ],
   "delay": "1"
 }
