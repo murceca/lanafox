@@ -45,6 +45,8 @@ app.use(function(req, res, next) {
 app.use('/', require('./routes/about-me'));
 app.use('/portfolio', require('./routes/portfolio'));
 app.use('/contact', require('./routes/contact'));
+app.use('/privacy-policy', require('./routes/privacy-policy'));
+app.use('/terms-and-conditions', require('./routes/terms-and-conditions'));
 app.use(require('./routes/not-found'));
 
 // error handler
