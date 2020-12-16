@@ -25,7 +25,7 @@ i18n.configure({
   objectNotation: true
 });
 app.use(i18n.init);
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   res.locals.activeLocale = req.getLocale();
   next();
 });
@@ -36,7 +36,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(configs.STATIC_ABS_PATH));
 
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   res.locals.canonicalUrl = `${req.protocol}://${req.get('host') + req.originalUrl}`;
   res.locals.host = `${req.protocol}://${req.get('host')}`;
   next();
@@ -50,7 +50,7 @@ app.use('/terms-and-conditions', require('./routes/terms-and-conditions'));
 app.use(require('./routes/not-found'));
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = configs.IS_PRODUCTION_ENVIRONMENT ? {} : err;

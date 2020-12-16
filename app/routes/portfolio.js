@@ -3,7 +3,7 @@ const router = express.Router();
 const imageUtils = require('../utils/image');
 
 /* GET portfolio page. */
-router.get('/', async function(req, res) {
+router.get('/', async (req, res) => {
   const imagesLoader = new imageUtils.ImagesLoader();
   const photos = await imagesLoader.getImages({
     itemsInRow: 3

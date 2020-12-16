@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 /* GET contact page. */
-router.get('/', function (req, res) {
+router.get('/', (req, res) => {
   res.render('contact', {
     title: 'Contact',
     isContactPage: true
@@ -10,7 +10,7 @@ router.get('/', function (req, res) {
 });
 
 /* Contact form submit. */
-router.post('/', async function (req, res) {
+router.post('/', async (req, res) => {
   let emailSent = false;
   let emailData = {
     name: req.body.name,

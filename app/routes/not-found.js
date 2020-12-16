@@ -1,4 +1,4 @@
-function notFoundHandler(req, res) {
+const notFoundHandler = (req, res) => {
   res.status(404).render('not-found');
 }
 
