@@ -1,4 +1,4 @@
-$(function () {
+$(() => {
   $('.js-contact-form').on('submit', function (event) {
     event.preventDefault();
     $('.js-contact-req-failed').hide();
