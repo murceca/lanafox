@@ -1,12 +1,28 @@
 {
   "parserOptions": {
-      "ecmaVersion": 6,
-      "sourceType": "script",
+      "ecmaVersion": 11,
+      "sourceType": "module",
       "ecmaFeatures": {
           "impliedStrict": true
       }
   },
+  "extends": "airbnb",
+  "ignorePatterns": ["public/**"],
   "rules": {
-      "semi": "error"
+    "semi": "error",
+    "comma-dangle": "off",
+    "func-names": "off",
+    "arrow-body-style": "warn",
+    "no-underscore-dangle": "off",
+    "consistent-return": "warn",
+    "class-methods-use-this": "warn"
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "jquery": true
+  },
+  "globals": {
+    "baguetteBox": true
   }
 }
