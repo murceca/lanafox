@@ -21,9 +21,7 @@
 * Start watching SCSS files: `npm run watch`
 
 Follow me: [Instagram](https://www.instagram.com/lanafox.ph/)
-           [Facebook](https://www.facebook.com/lanafox.ph)
-           [Twitter](https://twitter.com/lanafox_ph)
-           [Pinterest](https://www.pinterest.com/lanafox_ph/)
+           [Facebook](https://www.facebook.com/lanafox.ph/)
 
 
 # License
