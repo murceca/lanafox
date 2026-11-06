@@ -10,8 +10,8 @@ pids
 *.pid
 *.seed
 *.pid.lock
-*.css
 app/public/javascripts/*
+/app/public/stylesheets/
 .DS_Store
 .ai-wiki
 
@@ -63,3 +63,20 @@ typings/
 
 # next.js build output
 .next
+
+# Modern TypeScript workspace artifacts
+**/out/
+**/dist/
+**/*.tsbuildinfo
+playwright-report/
+test-results/
+.env.*
+!.env.example
+local.settings.json
+.terraform/
+*.tfstate*
+*.tfplan
+*.tfvars
+*.tfvars.json
+/artifacts/
+/apps/web/public/optimized/

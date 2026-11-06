@@ -1,0 +1,240 @@
+{
+  "resources": [
+    {
+      "publicId": "photos/036_v0nptu",
+      "width": 3948,
+      "height": 2800,
+      "context": {
+        "alt": "Reichstag at the rainy night"
+      }
+    },
+    {
+      "publicId": "photos/035_ti47nj",
+      "width": 3607,
+      "height": 2558,
+      "context": {}
+    },
+    {
+      "publicId": "photos/034_hpdrzp",
+      "width": 4220,
+      "height": 2176,
+      "context": {}
+    },
+    {
+      "publicId": "photos/033_sxlj31",
+      "width": 3380,
+      "height": 2534,
+      "context": {}
+    },
+    {
+      "publicId": "photos/032_wpltxy",
+      "width": 3097,
+      "height": 2335,
+      "context": {}
+    },
+    {
+      "publicId": "photos/031_yikqqf",
+      "width": 3648,
+      "height": 2736,
+      "context": {}
+    },
+    {
+      "publicId": "photos/030_ws5835",
+      "width": 3648,
+      "height": 2736,
+      "context": {}
+    },
+    {
+      "publicId": "photos/029_xkbxay",
+      "width": 3648,
+      "height": 2736,
+      "context": {}
+    },
+    {
+      "publicId": "photos/028_npwzna",
+      "width": 3648,
+      "height": 2736,
+      "context": {}
+    },
+    {
+      "publicId": "photos/027_mofc9u",
+      "width": 2736,
+      "height": 3648,
+      "context": {}
+    },
+    {
+      "publicId": "photos/026_jx7x6w",
+      "width": 2736,
+      "height": 3648,
+      "context": {}
+    },
+    {
+      "publicId": "photos/025_bogput",
+      "width": 2736,
+      "height": 3648,
+      "context": {}
+    },
+    {
+      "publicId": "photos/024_xarbfz",
+      "width": 3613,
+      "height": 2709,
+      "context": {
+        "alt": "Berlin church"
+      }
+    },
+    {
+      "publicId": "photos/023_zzfqmz",
+      "width": 3648,
+      "height": 2736,
+      "context": {}
+    },
+    {
+      "publicId": "photos/022_nch0k2",
+      "width": 3648,
+      "height": 2736,
+      "context": {}
+    },
+    {
+      "publicId": "photos/021_la8r4g",
+      "width": 3648,
+      "height": 2736,
+      "context": {}
+    },
+    {
+      "publicId": "photos/020_hmelkv",
+      "width": 3528,
+      "height": 2646,
+      "context": {}
+    },
+    {
+      "publicId": "photos/019_xwhuzy",
+      "width": 3533,
+      "height": 2704,
+      "context": {}
+    },
+    {
+      "publicId": "photos/018_lsvhn5",
+      "width": 3424,
+      "height": 2567,
+      "context": {}
+    },
+    {
+      "publicId": "photos/017_mj4zol",
+      "width": 3304,
+      "height": 2574,
+      "context": {}
+    },
+    {
+      "publicId": "photos/016_x7mvhm",
+      "width": 4898,
+      "height": 3265,
+      "context": {}
+    },
+    {
+      "publicId": "photos/015_pmti4s",
+      "width": 5338,
+      "height": 2996,
+      "context": {}
+    },
+    {
+      "publicId": "photos/014_m9azuo",
+      "width": 5338,
+      "height": 2996,
+      "context": {}
+    },
+    {
+      "publicId": "photos/013_qmvtvb",
+      "width": 4898,
+      "height": 3265,
+      "context": {}
+    },
+    {
+      "publicId": "photos/012_joltqt",
+      "width": 3409,
+      "height": 4266,
+      "context": {}
+    },
+    {
+      "publicId": "photos/011_cpyi4m",
+      "width": 2736,
+      "height": 3648,
+      "context": {}
+    },
+    {
+      "publicId": "photos/010_ma9hvg",
+      "width": 3265,
+      "height": 4900,
+      "context": {}
+    },
+    {
+      "publicId": "photos/009_ev3sjy",
+      "width": 2736,
+      "height": 3648,
+      "context": {}
+    },
+    {
+      "publicId": "photos/008_urzdc4",
+      "width": 2736,
+      "height": 3648,
+      "context": {}
+    },
+    {
+      "publicId": "photos/007_ixxhvs",
+      "width": 2736,
+      "height": 3648,
+      "context": {}
+    },
+    {
+      "publicId": "photos/006_homqos",
+      "width": 3298,
+      "height": 2525,
+      "context": {}
+    },
+    {
+      "publicId": "photos/005_ilzw0h",
+      "width": 4577,
+      "height": 3243,
+      "context": {}
+    },
+    {
+      "publicId": "photos/004_ht1g7o",
+      "width": 3648,
+      "height": 2736,
+      "context": {}
+    },
+    {
+      "publicId": "photos/003_mvrth5",
+      "width": 2048,
+      "height": 2685,
+      "context": {}
+    },
+    {
+      "publicId": "photos/002_uh3ygc",
+      "width": 2736,
+      "height": 3648,
+      "context": {}
+    },
+    {
+      "publicId": "photos/001_i5e12f",
+      "width": 2187,
+      "height": 2939,
+      "context": {}
+    }
+  ],
+  "transformations": {
+    "tall-photos-preview": [
+      {
+        "height": 640,
+        "quality": 80,
+        "crop": "scale"
+      }
+    ],
+    "wide-photos-preview": [
+      {
+        "quality": 80,
+        "width": 640,
+        "crop": "scale"
+      }
+    ]
+  }
+}

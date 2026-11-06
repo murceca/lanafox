@@ -1,0 +1,27 @@
+{
+  "name": "lanafox-modern",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "build": "npm run build -w @lanafox/contracts && npm run build -w @lanafox/contact-api && npm run build -w @lanafox/web",
+    "dev:api": "node --import tsx scripts/contact-local.ts",
+    "lint": "eslint apps packages scripts --ignore-pattern \"**/dist/**\"",
+    "typecheck": "npm run build -w @lanafox/contracts && npm run typecheck --workspaces --if-present",
+    "check:legacy-env": "NODE_PATH=app/node_modules node scripts/check-legacy-environment.cjs"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@types/node": "24.12.0",
+    "eslint": "10.14.0",
+    "tsx": "4.21.0",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.58.2"
+  }
+}
