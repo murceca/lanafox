@@ -1,4 +1,3 @@
-import delivery from "../content/cloudinary-public.json";
 import fixtures from "../content/photos.fixture.json";
 import curated from "../content/photos.production.json";
 
@@ -82,10 +81,11 @@ export function validatePhotos(input: unknown): Photo[] {
 
 export function photoUrl(photo: Photo, width = 960) {
   if (photo.src) return photo.src;
-  const cloud =
-    process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || delivery.cloudName;
+  const cloud = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
   if (!cloud || !/^[a-zA-Z0-9_-]+$/.test(cloud))
-    throw new Error("Missing Cloudinary delivery configuration");
+    throw new Error(
+      "Missing Cloudinary delivery configuration (NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME)",
+    );
   return `https://res.cloudinary.com/${cloud}/image/upload/c_limit,w_${Math.min(width, 1920)},h_1920/f_auto/q_auto/${photo.publicId.split("/").map(encodeURIComponent).join("/")}`;
 }
 
