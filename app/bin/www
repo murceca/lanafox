@@ -1,15 +1,6 @@
 #!/usr/bin/env node
 
-const dotenv = require('dotenv');
-const envConfig = dotenv.config();
-if (envConfig.error) {
-  throw envConfig.error;
-}
-console.log(`Starting app with following environment variables:`);
-for (let envVariable in envConfig.parsed) {
-  console.log(`${envVariable}=${envConfig.parsed[envVariable]}`);
-}
-console.log('');
+require('../utils/environment').loadEnvironment();
 
 /**
  * Module dependencies.

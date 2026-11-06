@@ -1,0 +1,144 @@
+{
+  "en": {
+    "carousel_alt_1": "Beautiful autumn",
+    "carousel_alt_2": "Photo with fallen leaves",
+    "carousel_alt_3": "Beautiful interior of the hotel",
+    "about_block_photo_alt": "Photo of Sveta",
+    "about_block": "Lana Fox Photographer, Vinnytsia",
+    "description": [
+      [
+        {
+          "text": "Hey there! My name is Svitlana and I'm a photographer based in Vinnytsia, Ukraine."
+        }
+      ],
+      [
+        {
+          "text": "I'm passionate about photography, music, and programming. In my work, I usually use the Nikon DSLR camera, which helps me to shoot high-quality photos. Also, I'm pretty good at post-processing techniques, so you can be sure I'll bring even more life, colors, and style in your photo album! I will be happy to help you capture the wonderful moments of your life."
+        }
+      ],
+      [
+        {
+          "text": " Feel free to "
+        },
+        {
+          "text": " contact me ",
+          "href": "/contact"
+        },
+        {
+          "text": " and thank you for taking time to look at my site and works. I hope to meet you in the near future."
+        }
+      ]
+    ],
+    "footer_text": "Your personal photographer,",
+    "footer_name": "Lana Fox",
+    "services": "SERVICES",
+    "services_portrait": "PORTRAIT PHOTOGRAPHY",
+    "services_landscape": "LANDSCAPE PHOTOGRAPHY",
+    "services_product": "PRODUCT PHOTOGRAPHY",
+    "services_event": "EVENT PHOTOGRAPHY",
+    "services_wedding": "WEDDING PHOTOGRAPHY",
+    "services_lifestyle": "LIFESTYLE PHOTOGRAPHY",
+    "services_fashion": "FASHION PHOTOGRAPHY",
+    "services_editing": "PHOTO RETOUCHING",
+    "testimonials": "TESTIMONIALS",
+    "testimonials_1_photo_alt": "Photo of Maryna",
+    "testimonials_1_title": "Thank you Svitlana for a fantastic photoshoot!",
+    "testimonials_1_description": [
+      [
+        {
+          "text": "Svitlana, I'm extremely gladful for your excellent work and big efforts. You're always a nice and positive person."
+        }
+      ],
+      [
+        {
+          "text": "I used to be shy and usually, I feel a bit uncomfortable on the photoshoot. But with you, it was a completely different thing. I was able to relax and have fun."
+        }
+      ],
+      [
+        {
+          "text": "As a result, we created a set of really incredible photos! I want to look at them again and again :) Some of them revealed to me differently over time and I like them even more now. On the photos, I'm always real and that's what I really appreciate."
+        }
+      ]
+    ],
+    "testimonials_1_footer": "I look forward to working with you again!",
+    "testimonials_1_footer_city": "Vinnytsia,",
+    "testimonials_1_footer_name": "Maryna"
+  },
+  "uk": {
+    "carousel_alt_1": "Красива осінь",
+    "carousel_alt_2": "Фото з опалим листям",
+    "carousel_alt_3": "Красивий інтер'єр готелю",
+    "about_block_photo_alt": "Світлана Грищук",
+    "about_block": "Lana Fox Фотограф, Вінниця",
+    "description": [
+      [
+        {
+          "text": "Привіт! Мене звати Світлана, проживаю у Вінниці, Україна."
+        }
+      ],
+      [
+        {
+          "text": "Захоплююсь фотографією, музикою та програмуванням. У своїй роботі зазвичай використовую дзеркальну камеру Nikon, яка допомагає мені знімати високоякісні фотографії. Крім того, досить добре володію техніками пост-обробки, тому Ви можете бути впевнені, що я додам ще більше життя, кольорів та стилю у Ваш фотоальбом! Я з радістю допоможу Вам зберегти чудові моменти Вашого життя."
+        }
+      ],
+      [
+        {
+          "text": "Якщо у Вас виникли запитання або Ви хочете забронювати фотосесію, прошу зв’язатися зі мною через "
+        },
+        {
+          "text": " форму зворотнього зв'язку",
+          "href": "/contact"
+        },
+        {
+          "text": "."
+        }
+      ],
+      [
+        {
+          "text": "Дякую, що знайшли час, щоб переглянути мій сайт і "
+        },
+        {
+          "text": "портфоліо",
+          "href": "/portfolio"
+        },
+        {
+          "text": ". Сподіваюся зустрітися з Вами найближчим часом."
+        }
+      ]
+    ],
+    "footer_text": "Ваш персональний фотограф,",
+    "footer_name": "Lana Fox",
+    "services": "ПОСЛУГИ",
+    "services_portrait": "ПОРТРЕТНА ФОТОЗЙОМКА",
+    "services_landscape": "ФОТОЗЙОМКА ПЕЙЗАЖІВ",
+    "services_product": "ФОТОЗЙОМКА ПРОДУКЦІЇ",
+    "services_event": "ФОТОЗЙОМКА ПОДІЙ",
+    "services_wedding": "ВЕСІЛЬНА ФОТОЗЙОМКА",
+    "services_lifestyle": "LIFESTYLE ФОТОЗЙОМКА",
+    "services_fashion": "FASHION ФОТОЗЙОМКА",
+    "services_editing": "ОБРОБКА ФОТОГРАФІЙ",
+    "testimonials": "ВІДГУКИ",
+    "testimonials_1_photo_alt": "Марина",
+    "testimonials_1_title": "Це була чудова фотосесія!",
+    "testimonials_1_description": [
+      [
+        {
+          "text": "Світлано, я надзвичайно рада твоїй чудовій роботі та великим зусиллям. Ти завжди привітна і позитивна людина."
+        }
+      ],
+      [
+        {
+          "text": "Зазвичай я соромилась та мені було трохи незручно на фотосесіях, але з тобою я змогла відпочити та повеселитися."
+        }
+      ],
+      [
+        {
+          "text": "В результаті ми отримали безліч справді неймовірних фотографій! Я хочу дивитись на них знову і знову :) Деякі з них відкрились мені по-новому з часом, і зараз подобаються ще більше. На фотографіях я завжди справжня, і це те, що я насправді ціную."
+        }
+      ]
+    ],
+    "testimonials_1_footer": "З нетерпінням чекаю наступної фотосесії!",
+    "testimonials_1_footer_city": "Вінниця,",
+    "testimonials_1_footer_name": "Марина"
+  }
+}

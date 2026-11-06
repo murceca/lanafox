@@ -1,0 +1,104 @@
+[
+  {
+    "publicId": "fixture-0",
+    "width": 360,
+    "height": 322,
+    "alt": {
+      "en": "Portrait photography",
+      "uk": "Портретна фотографія"
+    },
+    "caption": {
+      "en": "Portrait photography",
+      "uk": "Портретна фотографія"
+    },
+    "collection": "selected",
+    "order": 0,
+    "published": true,
+    "src": "/images/photos/services/portrait-photo.jpg"
+  },
+  {
+    "publicId": "fixture-1",
+    "width": 640,
+    "height": 427,
+    "alt": {
+      "en": "Landscape photography",
+      "uk": "Пейзажна фотографія"
+    },
+    "caption": {
+      "en": "Landscape photography",
+      "uk": "Пейзажна фотографія"
+    },
+    "collection": "selected",
+    "order": 1,
+    "published": true,
+    "src": "/images/photos/services/landscape-photo.jpg"
+  },
+  {
+    "publicId": "fixture-2",
+    "width": 640,
+    "height": 428,
+    "alt": {
+      "en": "Lifestyle photography",
+      "uk": "Фотографія повсякденного життя"
+    },
+    "caption": {
+      "en": "Lifestyle photography",
+      "uk": "Фотографія повсякденного життя"
+    },
+    "collection": "selected",
+    "order": 2,
+    "published": true,
+    "src": "/images/photos/services/lifestyle-photo.jpg"
+  },
+  {
+    "publicId": "fixture-3",
+    "width": 640,
+    "height": 427,
+    "alt": {
+      "en": "Wedding photography",
+      "uk": "Весільна фотографія"
+    },
+    "caption": {
+      "en": "Wedding photography",
+      "uk": "Весільна фотографія"
+    },
+    "collection": "selected",
+    "order": 3,
+    "published": true,
+    "src": "/images/photos/services/wedding-photo.jpg"
+  },
+  {
+    "publicId": "fixture-4",
+    "width": 640,
+    "height": 427,
+    "alt": {
+      "en": "Product photography",
+      "uk": "Предметна фотографія"
+    },
+    "caption": {
+      "en": "Product photography",
+      "uk": "Предметна фотографія"
+    },
+    "collection": "selected",
+    "order": 4,
+    "published": true,
+    "src": "/images/photos/services/product-photo.jpg"
+  },
+  {
+    "publicId": "fixture-5",
+    "width": 640,
+    "height": 427,
+    "alt": {
+      "en": "Event photography",
+      "uk": "Фотографія подій"
+    },
+    "caption": {
+      "en": "Event photography",
+      "uk": "Фотографія подій"
+    },
+    "collection": "selected",
+    "order": 5,
+    "published": true,
+    "src": "/images/photos/services/event-photo.jpg"
+  }
+]
