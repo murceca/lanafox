@@ -27,4 +27,5 @@ export {
   publicOrigin,
   type PageMetadata,
 } from "../lib/seo";
+export { apiUrl } from "../lib/api";
 

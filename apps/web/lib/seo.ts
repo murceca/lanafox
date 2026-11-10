@@ -28,13 +28,7 @@ export interface PageMetadata {
 }
 
 export function publicOrigin() {
-  const value =
-    process.env.SITE_ORIGIN ||
-    (process.env.PHOTO_SOURCE === "fixture" ||
-    process.env.PHOTO_SOURCE === "snapshot"
-      ? "https://lanafox.eu"
-      : undefined);
-  if (!value) throw Error("SITE_ORIGIN is required");
+  const value = process.env.SITE_ORIGIN || "https://lanafox.eu";
   const url = new URL(value);
   if (
     url.protocol !== "https:" ||

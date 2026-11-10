@@ -1,0 +1,171 @@
+.section {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 2.5rem;
+}
+
+.heading {
+  font-family: var(--font-brand);
+  font-size: clamp(1.75rem, 3.5vw, 2.4rem);
+  font-weight: 500;
+  letter-spacing: 0.28rem;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0.5rem 0 1.75rem;
+  color: var(--text);
+}
+
+.emptyState {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--text-muted);
+}
+
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.card {
+  background-color: var(--surface);
+  padding: 0.5rem;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.thumbLink {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  line-height: 0;
+}
+
+.thumbImg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 560px;
+  object-fit: contain;
+  margin: 0 auto;
+  transition: opacity 0.2s ease;
+}
+
+.thumbLink:hover .thumbImg {
+  opacity: 0.92;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .thumbImg {
+    transition: none;
+  }
+}
+
+/* Accessible Modal Lightbox */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  background: rgba(10, 10, 12, 0.92);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.dialogContent {
+  position: relative;
+  width: 100%;
+  max-width: 1280px;
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.topBar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #ffffff;
+  font-family: var(--font-brand);
+  font-size: 0.95rem;
+}
+
+.counter {
+  letter-spacing: 0.1rem;
+}
+
+.lightboxBtn {
+  appearance: none;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border-radius: 4px;
+  padding: 0.45rem 0.9rem;
+  font-family: var(--font-brand);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.lightboxBtn:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.lightboxBtn:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+.stage {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.stageFigure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.stageImg {
+  max-width: 100%;
+  max-height: 76vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.caption {
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.9rem;
+  text-align: center;
+}
+

@@ -68,6 +68,7 @@ typings/
 **/out/
 **/dist/
 **/*.tsbuildinfo
+**/next-env.d.ts
 playwright-report/
 test-results/
 .env.*

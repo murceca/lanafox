@@ -1,5 +1,5 @@
 import { MAX_BODY_BYTES } from "@lanafox/contracts";
-import type { Result } from "./service";
+import type { Result } from "./contact";
 
 export async function readBounded(body: ReadableStream<Uint8Array> | null) {
   if (!body) return "";

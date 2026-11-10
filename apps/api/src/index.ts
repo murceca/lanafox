@@ -8,6 +8,5 @@ export {
   type Result,
   type SendState,
   type Store,
-} from "./service";
+} from "./contact";
 export { createHttpHandler, readBounded } from "./http";
-

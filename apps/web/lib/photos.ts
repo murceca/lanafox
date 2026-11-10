@@ -90,13 +90,14 @@ export function photoUrl(photo: Photo, width = 960) {
 }
 
 export async function loadPhotos(): Promise<Photo[]> {
-  if (process.env.PHOTO_SOURCE === "fixture") return validatePhotos(fixtures);
-  if (process.env.PHOTO_SOURCE === "snapshot") {
+  const source = process.env.PHOTO_SOURCE || "snapshot";
+  if (source === "fixture") return validatePhotos(fixtures);
+  if (source === "snapshot") {
     const photos = validatePhotos(curated);
     if (!photos.length) throw new Error("Recovered gallery is empty");
     return photos;
   }
-  if (process.env.PHOTO_SOURCE !== "cloudinary")
+  if (source !== "cloudinary")
     throw new Error(
       "Set PHOTO_SOURCE explicitly to fixture, snapshot or cloudinary",
     );

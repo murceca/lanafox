@@ -1,8 +1,8 @@
 import { createServer } from "node:http";
 import { Readable } from "node:stream";
 import type { ContactRequest } from "@lanafox/contracts";
-import { createService, MemoryStore } from "../apps/contact-api/src/service";
-import { createHttpHandler } from "../apps/contact-api/src/http";
+import { createService, MemoryStore } from "../apps/api/src/contact";
+import { createHttpHandler } from "../apps/api/src/http";
 
 const store = new MemoryStore();
 // Local-only, bounded inbox; restarting clears it. Never log message bodies.
