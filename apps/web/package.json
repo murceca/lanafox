@@ -2,15 +2,20 @@
   "name": "@lanafox/web",
   "version": "1.0.0",
   "private": true,
-  "main": "dist/src/index.js",
-  "types": "dist/src/index.d.ts",
   "scripts": {
-    "build": "tsc",
+    "dev": "next dev -p 3101",
+    "build": "next build && node ../../scripts/finalize-export.mjs",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@lanafox/contracts": "1.0.0",
-    "cloudinary": "2.9.0"
+    "cloudinary": "2.9.0",
+    "next": "16.4.5",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0"
   }
 }
-

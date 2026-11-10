@@ -1,5 +1,5 @@
 {
-  "name": "@lanafox/contact-api",
+  "name": "@lanafox/api",
   "version": "1.0.0",
   "private": true,
   "main": "dist/index.js",
@@ -12,4 +12,3 @@
     "@lanafox/contracts": "1.0.0"
   }
 }
-

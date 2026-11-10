@@ -1,4 +1,5 @@
 import js from "@eslint/js";
+import globals from "globals";
 import tseslint from "typescript-eslint";
 
 export default tseslint.config(
@@ -10,6 +11,8 @@ export default tseslint.config(
       "**/dist/**",
       "**/node_modules/**",
       "**/next-env.d.ts",
+      "playwright-report/**",
+      "test-results/**",
     ],
   },
   js.configs.recommended,
@@ -17,17 +20,8 @@ export default tseslint.config(
   {
     languageOptions: {
       globals: {
-        process: "readonly",
-        console: "readonly",
-        Buffer: "readonly",
-        URL: "readonly",
-        fetch: "readonly",
-        setTimeout: "readonly",
-        clearInterval: "readonly",
-        setInterval: "readonly",
-        require: "readonly",
-        module: "readonly",
-        __dirname: "readonly",
+        ...globals.browser,
+        ...globals.node,
       },
     },
     rules: {

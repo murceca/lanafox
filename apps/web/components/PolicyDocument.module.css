@@ -1,0 +1,50 @@
+.wrapper {
+  max-width: 920px;
+  margin: 2rem auto 3rem;
+  padding: 2rem 1.5rem;
+  background-color: var(--surface);
+  border-radius: 3px;
+}
+
+@media (min-width: 768px) {
+  .wrapper {
+    padding: 2.75rem 3.25rem;
+  }
+}
+
+.heading {
+  font-family: var(--font-brand);
+  font-size: clamp(1.65rem, 3vw, 2.2rem);
+  font-weight: 500;
+  letter-spacing: 0.16rem;
+  margin: 0 0 1.25rem;
+  color: var(--text);
+}
+
+.reviewNotice {
+  background-color: var(--info-bg);
+  border-left: 4px solid var(--accent);
+  padding: 0.85rem 1.1rem;
+  margin-bottom: 1.75rem;
+  font-size: 0.92rem;
+  color: var(--text);
+}
+
+.section {
+  margin-bottom: 1.75rem;
+}
+
+.sectionTitle {
+  font-family: var(--font-brand);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 0.6rem;
+  color: var(--text);
+}
+
+.paragraph {
+  margin: 0 0 0.8rem;
+  line-height: 1.85;
+  color: var(--text);
+}
+

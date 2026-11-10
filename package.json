@@ -10,16 +10,27 @@
     "node": ">=24 <25"
   },
   "scripts": {
-    "build": "npm run build -w @lanafox/contracts && npm run build -w @lanafox/contact-api && npm run build -w @lanafox/web",
-    "dev:api": "node --import tsx scripts/contact-local.ts",
-    "lint": "eslint apps packages scripts --ignore-pattern \"**/dist/**\"",
+    "optimize:images": "node scripts/optimize-images.mjs",
+    "dev": "npm run build -w @lanafox/contracts && node scripts/optimize-images.mjs && PHOTO_SOURCE=snapshot SITE_ORIGIN=https://lanafox.eu NEXT_PUBLIC_API_BASE_URL=http://localhost:7071 npm run dev -w @lanafox/web",
+    "dev:api": "node --import tsx scripts/api-local.ts",
+    "build:fixture": "npm run build -w @lanafox/contracts && npm run build -w @lanafox/api && node scripts/optimize-images.mjs && PHOTO_SOURCE=fixture SITE_ORIGIN=https://lanafox.eu NEXT_PUBLIC_API_BASE_URL=http://localhost:7071 npm run build -w @lanafox/web",
+    "build:preview": "npm run build -w @lanafox/contracts && npm run build -w @lanafox/api && node scripts/optimize-images.mjs && PHOTO_SOURCE=snapshot SITE_ORIGIN=https://lanafox.eu NEXT_PUBLIC_API_BASE_URL=http://localhost:7071 npm run build -w @lanafox/web",
+    "build:cloudinary": "PHOTO_SOURCE=cloudinary SITE_ORIGIN=https://lanafox.eu npm run build",
+    "build": "npm run build -w @lanafox/contracts && npm run build -w @lanafox/api && node scripts/optimize-images.mjs && npm run build -w @lanafox/web",
+    "preview": "node scripts/serve-preview.mjs",
+    "lint": "eslint apps packages scripts tests",
     "typecheck": "npm run build -w @lanafox/contracts && npm run typecheck --workspaces --if-present",
+    "test": "npm run build -w @lanafox/contracts && node --import tsx --test tests/unit/*.test.ts",
+    "test:e2e": "playwright test",
     "check:legacy-env": "NODE_PATH=app/node_modules node scripts/check-legacy-environment.cjs"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
+    "@playwright/test": "1.65.0",
     "@types/node": "24.12.0",
     "eslint": "10.14.0",
+    "globals": "17.14.0",
+    "sharp": "0.35.5",
     "tsx": "4.21.0",
     "typescript": "5.9.3",
     "typescript-eslint": "8.58.2"
