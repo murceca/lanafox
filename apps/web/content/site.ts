@@ -5,13 +5,11 @@ export { locales, slugs, type Locale, type Slug };
 export const site = {
   name: "Lana Fox",
   email: "contact@lanafox.eu",
-  phone: "+380987034015",
   contentReviewRequired: true,
   social: [
     { label: "Facebook", url: "https://www.facebook.com/lanafox.ph" },
-    { label: "Pinterest", url: "https://www.pinterest.com/lanafox_ph" },
     { label: "Instagram", url: "https://www.instagram.com/lanafox.ph" },
-    { label: "Twitter", url: "https://twitter.com/lanafox_ph" },
+    { label: "Threads", url: "https://www.threads.net/@lanafox.ph" },
   ],
 } as const;
 
@@ -21,7 +19,7 @@ export const copy = {
     photography: "Photography",
     heading: "Lana Fox",
     intro:
-      "Hey there! My name is Svitlana. I’m passionate about photography, music, and programming.",
+      "Hey there! My name is Svitlana, and I’m a photographer passionate about photography, music, and programming.",
     portfolio: "Portfolio",
     contact: "Get in touch!",
     privacy: "Privacy policy",
@@ -45,9 +43,9 @@ export const copy = {
     photography: "Фотографія",
     heading: "Lana Fox",
     intro:
-      "Привіт! Мене звати Світлана. Захоплююсь фотографією, музикою та програмуванням.",
+      "Привіт! Мене звати Світлана, і я фотограф. Захоплююсь фотографією, музикою та програмуванням.",
     portfolio: "Портфоліо",
-    contact: "Зворотній зв’язок",
+    contact: "Зворотний зв’язок",
     privacy: "Політика конфіденційності",
     terms: "Умови використання",
     skip: "Перейти до вмісту",
@@ -58,7 +56,7 @@ export const copy = {
     message: "Повідомлення",
     send: "Надіслати",
     pending: "Надсилання…",
-    success: "Спасибі за Ваше повідомлення!",
+    success: "Дякую за Ваше повідомлення!",
     error:
       "Не вдалося обробити запит. Спробуйте ще раз або напишіть нам.",
     close: "Закрити",

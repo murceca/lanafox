@@ -11,9 +11,11 @@ test.describe("Bilingual content parity and SEO metadata", () => {
     await expect(
       page.getByRole("heading", {
         level: 1,
-        name: "Lana Fox Photographer, Vinnytsia",
+        name: "Lana Fox Photographer",
       }),
     ).toBeVisible();
+    await expect(page.locator("main")).not.toContainText("Vinnytsia");
+    await expect(page.locator("main")).not.toContainText("personal");
 
     // Hero carousel (3 slides + reduced-motion starts paused)
     const carousel = page.getByRole("region", { name: "Featured photographs" });
@@ -25,10 +27,14 @@ test.describe("Bilingual content parity and SEO metadata", () => {
       carousel.getByRole("button", { name: "Play slideshow" }),
     ).toHaveAttribute("aria-pressed", "true");
 
-    // Full biography text + localized contact link
+    // Full biography text + localized contact and portfolio links
     await expect(page.locator("#block-about")).toContainText("Nikon DSLR camera");
+    await expect(page.locator("#block-about")).toContainText("Your photographer,");
     await expect(
       page.locator("#block-about a[href='/en/contact/']"),
+    ).toBeVisible();
+    await expect(
+      page.locator("#block-about a[href='/en/portfolio/']"),
     ).toBeVisible();
 
     // All 8 service categories
@@ -46,35 +52,46 @@ test.describe("Bilingual content parity and SEO metadata", () => {
       await expect(page.getByText(service, { exact: true })).toBeVisible();
     }
 
-    // Full client testimonial
+    // Full client review
+    await expect(
+      page.getByRole("heading", { level: 2, name: "REVIEWS" }),
+    ).toBeVisible();
     await expect(
       page.getByRole("heading", {
-        name: "Thank you Svitlana for a fantastic photoshoot!",
+        name: "Thank you, Svitlana, for a fantastic photoshoot!",
       }),
     ).toBeVisible();
     await expect(page.locator("main")).toContainText(
-      "On the photos, I'm always real and that's what I really appreciate.",
+      "In the photos, I'm always real, and that's what I truly appreciate.",
     );
     await expect(page.locator("main")).toContainText("Maryna");
 
     // Footer & social links
-    await expect(
-      page.locator("footer a[href='mailto:contact@lanafox.eu']"),
-    ).toBeVisible();
-    await expect(
-      page.locator("footer a[href='tel:+380987034015']"),
-    ).toBeVisible();
+    const footerLogo = page.locator("footer a[aria-label='Lana Fox']");
+    const footerEmail = page.locator("footer a[href='mailto:contact@lanafox.eu']");
+    await expect(footerLogo).toBeVisible();
+    await expect(footerEmail).toBeVisible();
+    await expect(page.locator("footer a[href^='tel:']")).toHaveCount(0);
+    await expect(page.locator("footer a[lang]")).toHaveCount(0);
+
+    const logoBox = await footerLogo.boundingBox();
+    const emailBox = await footerEmail.boundingBox();
+    expect(logoBox).not.toBeNull();
+    expect(emailBox).not.toBeNull();
+    expect(logoBox!.x).toBeLessThan(200);
+    expect(emailBox!.x).toBeGreaterThan(800);
 
     for (const domain of [
       "facebook.com/lanafox.ph",
-      "pinterest.com/lanafox_ph",
       "instagram.com/lanafox.ph",
-      "twitter.com/lanafox_ph",
+      "threads.net/@lanafox.ph",
     ]) {
       await expect(page.locator(`header a[href*='${domain}']`).first()).toHaveCount(
         1,
       );
     }
+    await expect(page.locator("header a[href*='pinterest.com']")).toHaveCount(0);
+    await expect(page.locator("header a[href*='twitter.com']")).toHaveCount(0);
 
     // Zero legacy Google Universal Analytics scripts
     await expect(
@@ -91,12 +108,15 @@ test.describe("Bilingual content parity and SEO metadata", () => {
     await expect(
       page.getByRole("heading", {
         level: 1,
-        name: "Lana Fox Фотограф, Вінниця",
+        name: "Lana Fox Фотограф",
       }),
     ).toBeVisible();
+    await expect(page.locator("main")).not.toContainText("Вінниц");
+    await expect(page.locator("main")).not.toContainText("персональний");
     await expect(page.locator("#block-about")).toContainText(
       "дзеркальну камеру Nikon",
     );
+    await expect(page.locator("#block-about")).toContainText("Ваш фотограф,");
     await expect(
       page.locator("#block-about a[href='/uk/contact/']"),
     ).toBeVisible();
