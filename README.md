@@ -85,9 +85,8 @@ npm run check:legacy-env  # Legacy .env secret-logging regression check
 ## Follow Lana Fox
 
 - [Instagram](https://www.instagram.com/lanafox.ph/)
+- [Threads](https://www.threads.net/@lanafox.ph)
 - [Facebook](https://www.facebook.com/lanafox.ph/)
-- [Pinterest](https://www.pinterest.com/lanafox_ph/)
-- [Twitter](https://twitter.com/lanafox_ph)
 
 ## License
 

@@ -203,8 +203,7 @@ export function ContactForm({ locale }: { locale: Locale }) {
             {status === "error" && (
               <div className={styles.alertError} role="alert">
                 {t.error}{" "}
-                <a href={`mailto:${site.email}`}>{site.email}</a> ·{" "}
-                <a href={`tel:${site.phone}`}>{site.phone}</a>
+                <a href={`mailto:${site.email}`}>{site.email}</a>
               </div>
             )}
           </form>
