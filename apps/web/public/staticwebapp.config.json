@@ -1,0 +1,57 @@
+{
+  "routes": [
+    {
+      "route": "/_next/static/*",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
+    },
+    {
+      "route": "/",
+      "redirect": "/en/",
+      "statusCode": 301
+    },
+    {
+      "route": "/portfolio",
+      "redirect": "/en/portfolio/",
+      "statusCode": 301
+    },
+    {
+      "route": "/contact",
+      "redirect": "/en/contact/",
+      "statusCode": 301
+    },
+    {
+      "route": "/privacy-policy",
+      "redirect": "/en/privacy-policy/",
+      "statusCode": 301
+    },
+    {
+      "route": "/terms-and-conditions",
+      "redirect": "/en/terms-and-conditions/",
+      "statusCode": 301
+    }
+  ],
+  "responseOverrides": {
+    "404": {
+      "rewrite": "/404.html",
+      "statusCode": 404
+    }
+  },
+  "globalHeaders": {
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+    "Content-Security-Policy": "default-src 'self'; img-src 'self' data: https://res.cloudinary.com; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self' https://api.lanafox.eu http://localhost:7071; font-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'"
+  },
+  "mimeTypes": {
+    ".avif": "image/avif",
+    ".webp": "image/webp",
+    ".woff2": "font/woff2",
+    ".json": "application/json",
+    ".xml": "application/xml",
+    ".txt": "text/plain"
+  }
+}
+

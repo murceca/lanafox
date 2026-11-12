@@ -27,6 +27,7 @@ const requiredFiles = [
   "404.html",
   "robots.txt",
   "sitemap.xml",
+  "staticwebapp.config.json",
   "en/index.html",
   "uk/index.html",
   "en/portfolio/index.html",

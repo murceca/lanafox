@@ -1,43 +1,81 @@
 name: deployment
 
-# Controls when the action will run. Triggers the workflow on push event, but only for the master branch
 on:
-  push:
-    branches: [ master ]
+  workflow_dispatch:
+    inputs:
+      photo_source:
+        description: "Portfolio photo source for the production static export"
+        required: true
+        default: "snapshot"
+        type: choice
+        options:
+          - snapshot
+          - cloudinary
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  deploy:
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    environment: production
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Build the project
+      - name: Set up Node.js 24 LTS
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint, typecheck, and run unit tests
         run: |
-          cd app
-          npm install
-          npm run build:production
+          npm run lint
+          npm run typecheck
+          npm test
 
-      - name: Generate .env file
-        run: |
-          cd app
-          echo "${{secrets.ENV_VARS}}" > .env
-
-      - name: Sync
+      - name: Build production static export and API
         env:
-          dest: '${{secrets.DEPLOY_USER}}@${{secrets.DEPLOY_SERVER}}:${{secrets.DEPLOY_DIR}}'
-        run: |
-          echo "${{secrets.DEPLOY_KEY}}" > deploy_key
-          chmod 600 ./deploy_key
-          rsync -chav --delete \
-            -e 'ssh -i ./deploy_key -o StrictHostKeyChecking=no' \
-            --exclude /deploy_key \
-            --exclude /.git/ \
-            --exclude /.github/ \
-            --exclude /node_modules/ \
-            ./ ${{env.dest}}
+          PHOTO_SOURCE: ${{ inputs.photo_source }}
+          SITE_ORIGIN: https://lanafox.eu
+          NEXT_PUBLIC_API_BASE_URL: https://api.lanafox.eu
+          NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME: ${{ vars.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || secrets.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME }}
+          CLOUDINARY_URL: ${{ secrets.CLOUDINARY_URL }}
+        run: npm run build
+
+      - name: Assemble release artifacts
+        run: npm run package:release
+
+      - name: Upload release bundle artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: lanafox-release-${{ github.sha }}
+          path: artifacts/
+          retention-days: 30
+
+      - name: Azure login via Federated OIDC
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Deploy API to Azure Functions Flex Consumption
+        uses: Azure/functions-action@v1
+        with:
+          app-name: lanafox-production-api
+          package: artifacts/api
+
+      - name: Deploy static export to Azure Static Web Apps
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.SWA_DEPLOYMENT_TOKEN }}
+          action: upload
+          app_location: artifacts/web
+          skip_app_build: true
+          skip_api_build: true

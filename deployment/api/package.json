@@ -1,0 +1,16 @@
+{
+  "name": "lanafox-api-release",
+  "version": "1.0.0",
+  "private": true,
+  "main": "dist/index.js",
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "dependencies": {
+    "@azure/communication-email": "1.1.0",
+    "@azure/data-tables": "13.3.0",
+    "@azure/functions": "4.11.0",
+    "@azure/identity": "4.14.1",
+    "zod": "4.6.7"
+  }
+}
