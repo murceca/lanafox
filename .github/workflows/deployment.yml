@@ -11,10 +11,16 @@ on:
         options:
           - snapshot
           - cloudinary
+      rollback_run_id:
+        description: "Optional GitHub Actions run ID to roll back to an existing release artifact (leave empty to build fresh)"
+        required: false
+        default: ""
+        type: string
 
 permissions:
   id-token: write
   contents: read
+  actions: read
 
 jobs:
   deploy:
@@ -25,21 +31,25 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set up Node.js 24 LTS
+        if: ${{ inputs.rollback_run_id == '' }}
         uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
           cache: npm
 
       - name: Install dependencies
+        if: ${{ inputs.rollback_run_id == '' }}
         run: npm ci
 
       - name: Lint, typecheck, and run unit tests
+        if: ${{ inputs.rollback_run_id == '' }}
         run: |
           npm run lint
           npm run typecheck
           npm test
 
       - name: Build production static export and API
+        if: ${{ inputs.rollback_run_id == '' }}
         env:
           PHOTO_SOURCE: ${{ inputs.photo_source }}
           SITE_ORIGIN: https://lanafox.eu
@@ -49,14 +59,33 @@ jobs:
         run: npm run build
 
       - name: Assemble release artifacts
+        if: ${{ inputs.rollback_run_id == '' }}
         run: npm run package:release
 
       - name: Upload release bundle artifact
+        if: ${{ inputs.rollback_run_id == '' }}
         uses: actions/upload-artifact@v4
         with:
           name: lanafox-release-${{ github.sha }}
           path: artifacts/
           retention-days: 30
+
+      - name: Download existing release artifact for rollback
+        if: ${{ inputs.rollback_run_id != '' }}
+        uses: actions/download-artifact@v4
+        with:
+          run-id: ${{ inputs.rollback_run_id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          pattern: lanafox-release-*
+          merge-multiple: true
+          path: artifacts/
+
+      - name: Verify release manifest
+        run: |
+          test -f artifacts/release.json
+          test -f artifacts/web/staticwebapp.config.json
+          test -f artifacts/api/host.json
+          cat artifacts/release.json
 
       - name: Azure login via Federated OIDC
         uses: azure/login@v2

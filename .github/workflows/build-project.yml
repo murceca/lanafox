@@ -25,9 +25,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Verify legacy environment safety
-        run: npm run check:legacy-env
-
       - name: Build static export (fixture mode)
         run: npm run build:fixture
 

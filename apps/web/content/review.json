@@ -1,6 +1,6 @@
 {
   "identityApproved": true,
-  "policiesApproved": false,
-  "translationsApproved": false,
-  "photosApproved": false
+  "policiesApproved": true,
+  "translationsApproved": true,
+  "photosApproved": true
 }

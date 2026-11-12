@@ -100,7 +100,9 @@ createServer(async (req, res) => {
     const ext = path.extname(targetPath).toLowerCase();
     const cacheControl = pathname.startsWith("/_next/static/")
       ? "public, max-age=31536000, immutable"
-      : "no-cache";
+      : pathname.startsWith("/optimized/") || pathname.startsWith("/images/")
+        ? "public, max-age=604800, stale-while-revalidate=86400"
+        : "no-cache";
 
     res.writeHead(200, {
       ...baseHeaders,

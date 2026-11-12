@@ -197,3 +197,14 @@ terraform fmt -check
 terraform validate
 ```
 
+---
+
+## Release Rollback Procedure
+
+Every run of the manual [`.github/workflows/deployment.yml`](../.github/workflows/deployment.yml) workflow uploads a verified `lanafox-release-<sha>` artifact (retained for 30 days) containing `artifacts/web/`, `artifacts/api/`, and `artifacts/release.json` with SHA-256 digests.
+
+To roll back to a previous known-good release without rebuilding:
+1. Open **GitHub Actions → `deployment` → Run workflow**.
+2. Enter the **GitHub Actions Run ID** of the known-good deployment in the `rollback_run_id` input field and click **Run workflow**.
+3. The workflow downloads the verified `lanafox-release-*` artifact, checks `artifacts/release.json`, and redeploys both `artifacts/api` and `artifacts/web`.
+

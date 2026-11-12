@@ -7,6 +7,18 @@
       }
     },
     {
+      "route": "/optimized/*",
+      "headers": {
+        "Cache-Control": "public, max-age=604800, stale-while-revalidate=86400"
+      }
+    },
+    {
+      "route": "/images/*",
+      "headers": {
+        "Cache-Control": "public, max-age=604800, stale-while-revalidate=86400"
+      }
+    },
+    {
       "route": "/",
       "redirect": "/en/",
       "statusCode": 301
