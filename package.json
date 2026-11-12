@@ -22,7 +22,7 @@
     "typecheck": "npm run build -w @lanafox/contracts && npm run typecheck --workspaces --if-present",
     "test": "npm run build -w @lanafox/contracts && node --import tsx --test tests/unit/*.test.ts",
     "test:e2e": "playwright test",
-    "check:legacy-env": "NODE_PATH=app/node_modules node scripts/check-legacy-environment.cjs"
+    "package:release": "node scripts/package-release.mjs"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",

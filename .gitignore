@@ -10,8 +10,6 @@ pids
 *.pid
 *.seed
 *.pid.lock
-app/public/javascripts/*
-/app/public/stylesheets/
 .DS_Store
 .ai-wiki
 

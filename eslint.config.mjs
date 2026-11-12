@@ -5,7 +5,8 @@ import tseslint from "typescript-eslint";
 export default tseslint.config(
   {
     ignores: [
-      "app/**",
+      "artifacts/**",
+      "deployment/**",
       "**/.next/**",
       "**/out/**",
       "**/dist/**",

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import ReactDOM from "react-dom";
 import home from "../content/home.json";
 import { copy, type Locale } from "../content/site";
 import {
@@ -39,6 +40,18 @@ export function HeroCarousel({ locale }: { locale: Locale }) {
 
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+
+  ReactDOM.preload(slides[0]!.src, {
+    as: "image",
+    imageSrcSet: optimizedImageSrcSet(
+      slides[0]!.baseName,
+      [640, 1080, 1600],
+      "avif",
+    ),
+    imageSizes: "100vw",
+    type: "image/avif",
+    fetchPriority: "high",
+  });
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");

@@ -7,10 +7,11 @@
 ## Technology Stack
 
 - **Language:** TypeScript (strict mode) across npm workspaces
-- **Frontend:** React 19 + Next.js 16 App Router (`output: 'export'` static HTML export)
+- **Frontend:** React 19 + Next.js 16 App Router (`output: 'export'` static HTML export for Azure Static Web Apps `Free`)
 - **Styling:** Modern CSS Modules, CSS Grid/Flexbox, reduced-motion support
-- **Images & Gallery:** Cloudinary responsive delivery + `sharp` build-time AVIF/WebP local derivatives
-- **API Service:** Framework-agnostic TypeScript API (`@lanafox/api`) with shared Zod runtime contracts (`@lanafox/contracts`), HMAC fingerprinting, 24-hour idempotency, and hourly rate limits (`10/hour` global, `3/hour` per sender)
+- **Images & Gallery:** Cloudinary responsive delivery + `sharp` build-time AVIF/WebP local derivatives with `<link rel="preload" as="image">` hero LCP prioritization
+- **API Service:** Modular TypeScript API (`@lanafox/api`) on Azure Functions v4 (`FC1` Flex Consumption, Node 24 LTS) with shared Zod runtime contracts (`@lanafox/contracts`), Azure Table Storage (`ApiState`) + Azure Communication Services Email via Managed Identity, HMAC fingerprinting, 24-hour idempotency, and hourly rate limits (`10/hour` global, `3/hour` per sender)
+- **Edge & Infrastructure:** Cloudflare Free DNS/CDN/WAF + Azure Static Web Apps Free + Azure Functions Flex Consumption (see [`infra/README.md`](infra/README.md))
 - **Runtime:** Node.js 24 LTS (pinned via [`.nvmrc`](.nvmrc))
 - **Testing:** Node native unit/contract tests (`node --test`) + Playwright E2E browser suite
 
@@ -22,14 +23,16 @@
 .
 ├── apps/
 │   ├── web/            # @lanafox/web — Next.js App Router static export (/en/ & /uk/)
-│   └── api/            # @lanafox/api — HTTP core & domain services (e.g. contact)
+│   └── api/            # @lanafox/api — HTTP core, contact service & Azure Functions v4 adapters
 ├── packages/
 │   └── contracts/      # @lanafox/contracts — Shared TypeScript types & Zod schemas
-├── scripts/            # Image optimizer, static export verifier, preview server & mock API
-├── tests/
-│   ├── unit/           # Unit & contract tests
-│   └── e2e/            # Playwright browser E2E tests
-└── app/                # Preserved legacy Express 4 / Handlebars reference baseline
+├── deployment/
+│   └── api/            # Isolated minimal production manifest & lockfile for Azure Functions
+├── infra/              # Manual Azure Portal & Cloudflare setup guide + reference Terraform (*.tf)
+├── scripts/            # Image optimizer, export verifier, release packager, preview & mock API
+└── tests/
+    ├── unit/           # Unit & contract tests
+    └── e2e/            # Playwright browser E2E tests
 ```
 
 ---
@@ -59,7 +62,6 @@
 | **Next.js dev server** | `3101` | `npm run dev` | Hot-reloading dev server (`http://localhost:3101/en/`) |
 | **Static export preview** | `3102` | `npm run preview` | Serves `apps/web/out` (`http://localhost:3102/en/` & `/uk/`) |
 | **Local mock API** | `7071` | `npm run dev:api` | Loopback-only (`http://localhost:7071/api/contact`); test inbox at `http://localhost:7071/__test/inbox` (**sends no real email**) |
-| **Legacy reference (`app/`)** | `3000` | `cd app && PORT=3000 node ./bin/www` | Preserved legacy baseline for side-by-side comparison |
 
 ### Gallery Build Modes (`PHOTO_SOURCE`)
 - **`fixture`** (`npm run build:fixture`): Uses 6 local repository images for deterministic offline/CI builds without cloud configuration.
@@ -68,7 +70,7 @@
 
 ---
 
-## Verification & Testing
+## Verification, Testing & Release Packaging
 
 ```sh
 npm run build:fixture     # Offline 6-photo fixture static export
@@ -77,7 +79,7 @@ npm run lint              # ESLint across workspaces, scripts, and tests
 npm run typecheck         # TypeScript strict check across all workspaces
 npm test                  # Unit & contract tests
 npm run test:e2e          # Playwright E2E browser suite (starts preview + mock API)
-npm run check:legacy-env  # Legacy .env secret-logging regression check
+npm run package:release   # Bundle verifiable artifacts/ (web/, api/, release.json)
 ```
 
 ---
