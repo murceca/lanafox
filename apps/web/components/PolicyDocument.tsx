@@ -1,5 +1,4 @@
 import policies from "../content/policies.json";
-import review from "../content/review.json";
 import { copy, type Locale } from "../content/site";
 import styles from "./PolicyDocument.module.css";
 
@@ -21,12 +20,6 @@ export function PolicyDocument({
     <article className={styles.wrapper}>
       <h1 className={styles.heading}>{title}</h1>
 
-      {!review.policiesApproved && (
-        <p className={styles.reviewNotice} role="note">
-          {t.policy}
-        </p>
-      )}
-
       {sections.map(([sectionTitle, paragraphs]) => (
         <section key={sectionTitle} className={styles.section}>
           <h2 className={styles.sectionTitle}>{sectionTitle}</h2>
@@ -40,4 +33,3 @@ export function PolicyDocument({
     </article>
   );
 }
-

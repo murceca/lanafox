@@ -20,7 +20,6 @@ const submit = createService(
 );
 
 const handler = createHttpHandler(submit, [
-  "http://localhost:3000",
   "http://localhost:3101",
   "http://localhost:3102",
 ]);
@@ -57,11 +56,7 @@ createServer(async (req, res) => {
     );
     res.writeHead(response.status, Object.fromEntries(response.headers));
     const body = await response.text();
-    res.end(
-      response.status === 202
-        ? JSON.stringify({ ...JSON.parse(body), delivery: "preview" })
-        : body,
-    );
+    res.end(body);
   } catch {
     res.writeHead(500);
     res.end();

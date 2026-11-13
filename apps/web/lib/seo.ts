@@ -85,10 +85,7 @@ export function metadataFor(locale: Locale, slug: Slug): PageMetadata {
         },
       ],
     },
-    robots:
-      process.env.DEPLOY_ENV === "production"
-        ? { index: true, follow: true }
-        : { index: false, follow: false },
+    robots: { index: true, follow: true },
   };
 }
 

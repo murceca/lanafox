@@ -10,41 +10,35 @@
       [
         "Information you provide",
         [
-          "The contact form asks for your name, email address and message. These details are used to receive and respond to your enquiry. Please do not include sensitive information that is not needed for your enquiry."
+          "The contact form asks for your name, email address, and message. These details are used to receive and respond to your inquiry. Please do not include sensitive information that is not needed for your inquiry."
         ]
       ],
       [
         "How the website processes information",
         [
           "Public photographs are delivered by Cloudinary. Loading an image sends a request to that service, which may receive technical information such as your IP address and browser details.",
-          "The production contact endpoint is designed to run on Microsoft Azure and send email through Azure Communication Services. A submission identifier and keyed fingerprints are used to prevent duplicate messages and limit abuse; the rate-limit records do not contain your message text or plaintext email address."
+          "The contact endpoint runs on Microsoft Azure and delivers messages through Azure Communication Services. A submission identifier and keyed cryptographic fingerprints are used to prevent duplicate messages and limit abuse; rate-limit records do not contain your message text or plaintext email address."
         ]
       ],
       [
         "Cookies and external links",
         [
-          "The current website does not add advertising trackers, analytics scripts, login cookies or social-network embeds. Language selection is encoded in the page URL.",
-          "Social profile links open external websites. Those sites operate under their own privacy policies. We do not control their data processing."
+          "This website does not use advertising trackers, analytics scripts, login cookies, or social-network embeds. Language selection is encoded in the page URL.",
+          "Social profile links open external websites that operate under their own privacy policies. We do not control their data processing."
         ]
       ],
       [
         "Retention and security",
         [
           "Contact messages become correspondence in the receiving mailbox. Contact us about access to or removal of that correspondence.",
-          "The contact system is configured to retain duplicate-submission records for 24 hours and rate-limit counters for up to two hours, followed by scheduled cleanup. Operational telemetry is configured for 30-day retention. Logs are designed to exclude message bodies and credentials.",
+          "Duplicate-submission records are retained for 24 hours and rate-limit counters for up to two hours, followed by scheduled cleanup. Operational telemetry is retained for 30 days. Logs exclude message bodies and credentials.",
           "No transmission or storage system can be guaranteed completely secure. Do not use this form for confidential or urgent information."
-        ]
-      ],
-      [
-        "Local previews",
-        [
-          "A preview may use a local test inbox rather than send email. In that mode, the form explicitly says that no email was sent. Preview submissions are not photography bookings."
         ]
       ],
       [
         "Questions and updates",
         [
-          "Write to contact@lanafox.eu with questions about the information you submitted or this website. This page should be reviewed when the website’s integrations or data practices change."
+          "Write to contact@lanafox.eu with questions about the information you submitted or this website. This policy is updated when the website’s integrations or data practices change."
         ]
       ]
     ],
@@ -58,19 +52,19 @@
       [
         "Photographs and other material",
         [
-          "Photographs, branding and written material belong to their respective rights holders. Viewing the portfolio does not grant permission to reproduce, distribute, sell or commercially use the photographs. Contact contact@lanafox.eu to ask about permission or licensing."
+          "Photographs, branding, and written material belong to their respective rights holders. Viewing the portfolio does not grant permission to reproduce, distribute, sell, or commercially use the photographs. Contact contact@lanafox.eu to ask about permission or licensing."
         ]
       ],
       [
-        "Enquiries and photography services",
+        "Inquiries and photography services",
         [
-          "Sending a contact message does not confirm a booking, a price or availability. Any photography engagement and its terms must be agreed separately with the photographer. The website does not process payments or create customer accounts."
+          "Sending a contact message does not confirm a booking, a price, or availability. Any photography engagement and its terms must be agreed separately with the photographer. The website does not process payments or create customer accounts."
         ]
       ],
       [
         "Acceptable use",
         [
-          "Do not send spam, impersonate another person, submit unlawful material, attempt to bypass abuse controls or interfere with the website’s availability."
+          "Do not send spam, impersonate another person, submit unlawful material, attempt to bypass abuse controls, or interfere with the website’s availability."
         ]
       ],
       [
@@ -82,13 +76,13 @@
       [
         "Availability and corrections",
         [
-          "The portfolio may be updated or temporarily unavailable. If you find an incorrect detail, a broken link or material you believe should be removed, contact contact@lanafox.eu."
+          "The portfolio may be updated or temporarily unavailable. If you find an incorrect detail, a broken link, or material you believe should be removed, contact contact@lanafox.eu."
         ]
       ],
       [
         "Contact",
         [
-          "Questions about this website, photographs or these terms can be sent to contact@lanafox.eu."
+          "Questions about this website, photographs, or these terms can be sent to contact@lanafox.eu."
         ]
       ]
     ]
@@ -110,35 +104,29 @@
       [
         "Як сайт обробляє інформацію",
         [
-          "Публічні фотографії завантажуються через Cloudinary. Завантаження зображення надсилає запит до цього сервісу, який може отримувати технічні відомості, зокрема IP-адресу та інформацію про браузер.",
-          "Сервер форми зв’язку призначений для роботи в Microsoft Azure та надсилання листів через Azure Communication Services. Ідентифікатор запиту та криптографічні відбитки використовуються для запобігання дублюванню повідомлень і зловживанням. Записи обмеження частоти не містять тексту повідомлення або електронної адреси у відкритому вигляді."
+          "Публічні фотографії доставляються через Cloudinary. Завантаження зображення надсилає запит до цього сервісу, який може отримувати технічні відомості, зокрема IP-адресу та інформацію про браузер.",
+          "Сервер форми зв’язку працює в Microsoft Azure та надсилає листи через Azure Communication Services. Ідентифікатор запиту та криптографічні відбитки використовуються для запобігання дублюванню повідомлень і зловживанням. Записи обмеження частоти не містять тексту повідомлення або електронної адреси у відкритому вигляді."
         ]
       ],
       [
         "Файли cookie та зовнішні посилання",
         [
-          "Поточний сайт не додає рекламних трекерів, аналітичних скриптів, файлів cookie для входу чи вбудованих віджетів соціальних мереж. Вибрана мова визначається адресою сторінки.",
-          "Посилання на соціальні профілі відкривають зовнішні сайти. Вони мають власні політики конфіденційності. Ми не контролюємо обробку даних на цих сайтах."
+          "Цей сайт не використовує рекламних трекерів, аналітичних скриптів, файлів cookie для входу чи вбудованих віджетів соціальних мереж. Вибрана мова визначається адресою сторінки.",
+          "Посилання на соціальні профілі відкривають зовнішні сайти, які діють відповідно до власних політик конфіденційності. Ми не контролюємо обробку даних на цих сайтах."
         ]
       ],
       [
         "Зберігання та захист",
         [
           "Повідомлення з форми стають листуванням у поштовій скриньці одержувача. Звертайтеся до нас щодо доступу до цього листування або його видалення.",
-          "Система налаштована на зберігання записів захисту від дублікатів протягом 24 годин, а лічильників обмеження частоти — до двох годин із подальшим плановим очищенням. Термін зберігання операційної телеметрії налаштовано на 30 днів. Журнали не повинні містити тексти повідомлень або облікові секрети.",
+          "Записи захисту від дублікатів зберігаються протягом 24 годин, а лічильники обмеження частоти — до двох годин із подальшим плановим очищенням. Операційна телеметрія зберігається протягом 30 днів. Журнали не містять текстів повідомлень або облікових секретів.",
           "Жодна система передавання чи зберігання не гарантує абсолютної безпеки. Не використовуйте цю форму для конфіденційних або термінових відомостей."
-        ]
-      ],
-      [
-        "Локальний перегляд",
-        [
-          "Попередня версія може використовувати локальну тестову скриньку замість надсилання листів. У такому режимі форма прямо повідомляє, що лист не було надіслано. Тестові повідомлення не є бронюванням фотосесії."
         ]
       ],
       [
         "Питання та оновлення",
         [
-          "Пишіть на contact@lanafox.eu з питаннями про надіслану інформацію або цей сайт. Цю сторінку слід переглядати при зміні інтеграцій чи способів обробки даних."
+          "Пишіть на contact@lanafox.eu з питаннями про надіслану інформацію або цей сайт. Ця політика оновлюється у разі зміни інтеграцій чи способів обробки даних."
         ]
       ]
     ],

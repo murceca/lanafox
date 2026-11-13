@@ -5,7 +5,6 @@ export { locales, slugs, type Locale, type Slug };
 export const site = {
   name: "Lana Fox",
   email: "contact@lanafox.eu",
-  contentReviewRequired: true,
   social: [
     { label: "Facebook", url: "https://www.facebook.com/lanafox.ph" },
     { label: "Instagram", url: "https://www.instagram.com/lanafox.ph" },
@@ -17,7 +16,6 @@ export const copy = {
   en: {
     nav: ["About me", "Portfolio", "Contact"],
     photography: "Photography",
-    heading: "Lana Fox",
     intro:
       "Hey there! My name is Svitlana, and I’m a photographer passionate about photography, music, and programming.",
     portfolio: "Portfolio",
@@ -26,7 +24,6 @@ export const copy = {
     terms: "Terms and conditions",
     skip: "Skip to content",
     empty: "The gallery is being curated.",
-    policy: "This page is awaiting owner review before public launch.",
     name: "Your name",
     email: "Your email",
     message: "Message",
@@ -41,7 +38,6 @@ export const copy = {
   uk: {
     nav: ["Про мене", "Портфоліо", "Контакти"],
     photography: "Фотографія",
-    heading: "Lana Fox",
     intro:
       "Привіт! Мене звати Світлана, і я фотограф. Захоплююсь фотографією, музикою та програмуванням.",
     portfolio: "Портфоліо",
@@ -50,7 +46,6 @@ export const copy = {
     terms: "Умови використання",
     skip: "Перейти до вмісту",
     empty: "Галерея готується до публікації.",
-    policy: "Ця сторінка очікує перевірки власником перед публікацією.",
     name: "Ваше ім’я",
     email: "Ваша електронна адреса",
     message: "Повідомлення",
@@ -68,4 +63,3 @@ export const copy = {
 export function href(locale: Locale, slug: string = "") {
   return `/${locale}/${slug ? slug + "/" : ""}`;
 }
-

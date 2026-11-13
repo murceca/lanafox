@@ -157,10 +157,8 @@ test("loadPhotos supports fixture (6), snapshot (36), and default snapshot modes
 
 test("SEO helpers emit canonical URLs, hreflang alternates, sitemap, and robots", () => {
   const prevOrigin = process.env.SITE_ORIGIN;
-  const prevDeploy = process.env.DEPLOY_ENV;
   try {
     delete process.env.SITE_ORIGIN;
-    delete process.env.DEPLOY_ENV;
 
     assert.equal(publicOrigin(), "https://lanafox.eu");
     process.env.SITE_ORIGIN = "https://lanafox.eu";
@@ -169,10 +167,7 @@ test("SEO helpers emit canonical URLs, hreflang alternates, sitemap, and robots"
     assert.equal(ukPortfolio.alternates.languages.en, "https://lanafox.eu/en/portfolio/");
     assert.equal(ukPortfolio.alternates.languages.uk, "https://lanafox.eu/uk/portfolio/");
     assert.equal(ukPortfolio.alternates.languages["x-default"], "https://lanafox.eu/en/portfolio/");
-    assert.deepEqual(ukPortfolio.robots, { index: false, follow: false });
-
-    process.env.DEPLOY_ENV = "production";
-    assert.deepEqual(metadataFor("en", "").robots, { index: true, follow: true });
+    assert.deepEqual(ukPortfolio.robots, { index: true, follow: true });
 
     const sitemap = buildSitemap();
     assert.equal(sitemap.length, 10);
@@ -197,8 +192,6 @@ test("SEO helpers emit canonical URLs, hreflang alternates, sitemap, and robots"
   } finally {
     if (prevOrigin === undefined) delete process.env.SITE_ORIGIN;
     else process.env.SITE_ORIGIN = prevOrigin;
-    if (prevDeploy === undefined) delete process.env.DEPLOY_ENV;
-    else process.env.DEPLOY_ENV = prevDeploy;
   }
 });
 

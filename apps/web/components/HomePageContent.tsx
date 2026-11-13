@@ -248,11 +248,7 @@ export function HomePageContent({ locale }: { locale: Locale }) {
                 </div>
                 <hr className={styles.divider} />
                 <div className={styles.signature}>
-                  —{" "}
-                  {t.testimonials_1_footer_city
-                    ? `${t.testimonials_1_footer_city} `
-                    : ""}
-                  <cite>{t.testimonials_1_footer_name}</cite>
+                  — <cite>{t.testimonials_1_footer_name}</cite>
                 </div>
               </div>
             </div>

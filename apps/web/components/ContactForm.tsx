@@ -16,8 +16,6 @@ function createDraftId(): string {
 export function ContactForm({ locale }: { locale: Locale }) {
   const t = copy[locale];
   const endpoint = apiUrl("/api/contact");
-  const isLocalEndpoint =
-    endpoint.includes("localhost") || endpoint.includes("127.0.0.1");
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -27,7 +25,6 @@ export function ContactForm({ locale }: { locale: Locale }) {
   const [status, setStatus] = useState<"idle" | "pending" | "success" | "error">(
     "idle",
   );
-  const [previewDelivery, setPreviewDelivery] = useState(false);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -60,11 +57,6 @@ export function ContactForm({ locale }: { locale: Locale }) {
         return;
       }
 
-      const body = (await res.json().catch(() => ({}))) as {
-        status?: string;
-        delivery?: string;
-      };
-      setPreviewDelivery(body.delivery === "preview" || isLocalEndpoint);
       setStatus("success");
     } catch {
       setStatus("error");
@@ -76,39 +68,13 @@ export function ContactForm({ locale }: { locale: Locale }) {
       <div className={styles.card}>
         <h1 className={styles.heading}>{t.contact}</h1>
 
-        {isLocalEndpoint && (
-          <div
-            className={styles.previewBanner}
-            data-testid="local-inbox-notice"
-          >
-            {locale === "uk" ? (
-              <>
-                <strong>Локальний режим перегляду:</strong> реальні електронні
-                листи не надсилаються. Повідомлення зберігаються лише у
-                тимчасовій локальній скриньці (
-                <code>http://localhost:7071/__test/inbox</code>).
-              </>
-            ) : (
-              <>
-                <strong>Local preview mode:</strong> no real email is sent.
-                Messages stay only in the temporary loopback test inbox (
-                <code>http://localhost:7071/__test/inbox</code>).
-              </>
-            )}
-          </div>
-        )}
-
         {status === "success" ? (
           <div className={styles.alertSuccess} role="status">
             <p className={styles.alertTitle}>{t.success}</p>
             <p>
-              {previewDelivery
-                ? locale === "uk"
-                  ? "Запис збережено в локальній тестовій скриньці (лист не надсилався)."
-                  : "Recorded in the local preview test inbox (no email was sent)."
-                : locale === "uk"
-                  ? "Ми зв’яжемось із Вами якомога швидше."
-                  : "We will reach you as soon as possible."}
+              {locale === "uk"
+                ? "Ми зв’яжемось із Вами якомога швидше."
+                : "We will reach you as soon as possible."}
             </p>
             <button
               type="button"

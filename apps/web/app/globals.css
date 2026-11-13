@@ -1,7 +1,6 @@
 :root {
   --bg: #ffffff;
   --surface: #f9f9f9;
-  --surface-strong: rgba(255, 255, 255, 0.9);
   --border: #dddddd;
   --border-subtle: #eeeeee;
   --text: #1c1e21;
@@ -11,8 +10,6 @@
   --danger-bg: #fdf2f2;
   --danger-border: #e0b4b4;
   --danger-text: #842029;
-  --info-bg: #f4f6f8;
-  --info-border: #cbd2d9;
   --success-bg: #eef7f1;
   --success-border: #a3cfbb;
   --success-text: #14532d;

@@ -40,16 +40,6 @@
   color: #111111;
 }
 
-.previewBanner {
-  background-color: var(--info-bg);
-  border: 1px solid var(--info-border);
-  border-radius: 4px;
-  padding: 0.8rem 1rem;
-  margin-bottom: 1.35rem;
-  font-size: 0.9rem;
-  color: var(--text);
-}
-
 .fieldGroup {
   margin-bottom: 1.15rem;
 }

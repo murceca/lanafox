@@ -144,14 +144,16 @@ test.describe("Bilingual content parity and SEO metadata", () => {
     await expect(
       page.getByRole("heading", { level: 1, name: "Політика конфіденційності" }),
     ).toBeVisible();
-    await expect(page.locator("article section")).toHaveCount(7);
+    await expect(page.locator("article section")).toHaveCount(6);
+    await expect(page.locator("article")).not.toContainText("Локальний перегляд");
 
     await page.locator("header a[href='/en/privacy-policy/']").first().click();
     await expect(page).toHaveURL(/\/en\/privacy-policy\/$/);
     await expect(
       page.getByRole("heading", { level: 1, name: "Privacy policy" }),
     ).toBeVisible();
-    await expect(page.locator("article section")).toHaveCount(7);
+    await expect(page.locator("article section")).toHaveCount(6);
+    await expect(page.locator("article")).not.toContainText("Local previews");
   });
 
   test("renders substantive Terms & Conditions and emits valid canonical, hreflang, sitemap, and robots", async ({
@@ -164,6 +166,11 @@ test.describe("Bilingual content parity and SEO metadata", () => {
     ).toBeVisible();
     await expect(page.locator("article section")).toHaveCount(7);
     await expect(page.locator("article [role='note']")).toHaveCount(0);
+
+    await expect(page.locator("meta[name='robots']")).toHaveAttribute(
+      "content",
+      "index, follow",
+    );
 
     await expect(page.locator("link[rel='canonical']")).toHaveAttribute(
       "href",
