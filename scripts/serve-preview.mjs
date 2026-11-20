@@ -24,18 +24,6 @@ const mimeTypes = {
   ".xml": "application/xml; charset=utf-8",
 };
 
-const legacySlugs = new Map([
-  ["/", ""],
-  ["/portfolio", "portfolio/"],
-  ["/portfolio/", "portfolio/"],
-  ["/contact", "contact/"],
-  ["/contact/", "contact/"],
-  ["/privacy-policy", "privacy-policy/"],
-  ["/privacy-policy/", "privacy-policy/"],
-  ["/terms-and-conditions", "terms-and-conditions/"],
-  ["/terms-and-conditions/", "terms-and-conditions/"],
-]);
-
 const baseHeaders = {
   "X-Content-Type-Options": "nosniff",
   "X-Frame-Options": "DENY",
@@ -49,17 +37,6 @@ createServer(async (req, res) => {
   try {
     const url = new URL(req.url || "/", `http://localhost:${port}`);
     const pathname = decodeURIComponent(url.pathname);
-
-    if (legacySlugs.has(pathname)) {
-      const locale = url.searchParams.get("lang") === "uk" ? "uk" : "en";
-      const slug = legacySlugs.get(pathname);
-      res.writeHead(308, {
-        ...baseHeaders,
-        Location: `/${locale}/${slug}`,
-      });
-      res.end();
-      return;
-    }
 
     const resolved = path.resolve(outDir, `.${pathname}`);
     if (!resolved.startsWith(outDir)) {

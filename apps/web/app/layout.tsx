@@ -19,6 +19,9 @@ export const metadata: Metadata = {
     ],
   },
   manifest: "/images/favicon/manifest.json",
+  other: {
+    "msapplication-config": "/images/favicon/browserconfig.xml",
+  },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

@@ -150,6 +150,19 @@ test("TableStore supports claim, finish, ETag-retried consume, and expired row c
   await store.cleanup(750);
   assert.equal(client.rows.has("rate:sender-1"), false);
   assert.equal(client.rows.has("claim:sub-1"), true);
+
+  // Expired claim is replaced on read when nowMs >= expires
+  const replacedClaim = await store.claim(
+    "sub-1",
+    {
+      hash: "new-hash",
+      state: "pending",
+      expires: 2000,
+    },
+    1500,
+  );
+  assert.equal(replacedClaim, null);
+  assert.equal(client.rows.get("claim:sub-1")?.hash, "new-hash");
 });
 
 test("AcsMailer escapes HTML entities, sanitizes subject headers, and checks delivery status", async () => {

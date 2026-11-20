@@ -117,6 +117,95 @@ test("contact service enforces 3/hr sender limit and short-circuits subsequent f
   );
   assert.equal(fifth.status, 429);
   assert.equal(storeConsumeCalls, callsAfter4th);
+
+  // Confirm per-sender 429 on 4th attempt did NOT consume a 4th global slot
+  const globalEntry = [...backing.counts.entries()].find(([k]) =>
+    k.startsWith("global-"),
+  );
+  assert.equal(globalEntry?.[1].count, SENDER_HOURLY_LIMIT);
+});
+
+test("contact service allows retrying uncertain (transiently failed) submissions with the same submissionId", async () => {
+  const store = new MemoryStore();
+  let shouldFail = true;
+  let sentCount = 0;
+  const submit = createService(
+    store,
+    {
+      async send() {
+        if (shouldFail) throw new Error("Transient ACS timeout");
+        sentCount++;
+      },
+    },
+    TEST_SECRET,
+  );
+
+  const payload = makePayload();
+  const raw = JSON.stringify(payload);
+
+  const first = await submit(raw);
+  assert.equal(first.status, 503);
+  assert.equal(first.body.status, "unavailable");
+  assert.equal(sentCount, 0);
+
+  shouldFail = false;
+  const retry = await submit(raw);
+  assert.equal(retry.status, 202);
+  assert.equal(retry.body.status, "accepted");
+  assert.equal(sentCount, 1);
+});
+
+test("contact service enforces 3/hr per-IP limit across rotating fake email addresses without burning global quota", async () => {
+  const store = new MemoryStore();
+  const submit = createService(store, { async send() {} }, TEST_SECRET);
+  const handler = createHttpHandler(submit, ["https://lanafox.eu"]);
+
+  for (let i = 0; i < SENDER_HOURLY_LIMIT; i++) {
+    const res = await handler(
+      new Request("https://api.lanafox.eu/api/contact", {
+        method: "POST",
+        headers: {
+          Origin: "https://lanafox.eu",
+          "Content-Type": "application/json",
+          "CF-Connecting-IP": "203.0.113.42",
+        },
+        body: JSON.stringify(
+          makePayload({ email: `rotating-${i}@example.com` }),
+        ),
+      }),
+    );
+    assert.equal(res.status, 202);
+  }
+
+  // 4th request from same IP with a brand-new email address is blocked by per-IP limit
+  const fourthFromSameIp = await handler(
+    new Request("https://api.lanafox.eu/api/contact", {
+      method: "POST",
+      headers: {
+        Origin: "https://lanafox.eu",
+        "Content-Type": "application/json",
+        "CF-Connecting-IP": "203.0.113.42",
+      },
+      body: JSON.stringify(
+        makePayload({ email: "rotating-fourth@example.com" }),
+      ),
+    }),
+  );
+  assert.equal(fourthFromSameIp.status, 429);
+
+  // Another visitor from a different IP can still submit normally
+  const otherVisitor = await handler(
+    new Request("https://api.lanafox.eu/api/contact", {
+      method: "POST",
+      headers: {
+        Origin: "https://lanafox.eu",
+        "Content-Type": "application/json",
+        "CF-Connecting-IP": "198.51.100.77",
+      },
+      body: JSON.stringify(makePayload({ email: "legit@example.com" })),
+    }),
+  );
+  assert.equal(otherVisitor.status, 202);
 });
 
 test("contact service enforces 10/hr global limit across distinct senders", async () => {
@@ -187,4 +276,19 @@ test("HTTP handler enforces CORS, HTTP methods, content-type, Retry-After, and b
     }),
   );
   assert.equal(tooLarge.status, 413);
+
+  const throwingHandler = createHttpHandler(
+    async () => {
+      throw new Error("Unexpected internal failure");
+    },
+    ["http://localhost:3102"],
+  );
+  const unexpectedErr = await throwingHandler(
+    new Request("http://localhost:7071/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(makePayload()),
+    }),
+  );
+  assert.equal(unexpectedErr.status, 503);
 });

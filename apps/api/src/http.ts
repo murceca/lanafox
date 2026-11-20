@@ -24,7 +24,7 @@ export async function readBounded(body: ReadableStream<Uint8Array> | null) {
 }
 
 export function createHttpHandler(
-  submit: (body: string) => Promise<Result>,
+  submit: (body: string, clientIp?: string) => Promise<Result>,
   origins: string[],
 ) {
   return async (request: Request): Promise<Response> => {
@@ -56,17 +56,32 @@ export function createHttpHandler(
         status: 415,
         headers,
       });
+    let raw: string;
     try {
-      const raw = await readBounded(request.body);
-      const result = await submit(raw);
+      raw = await readBounded(request.body);
+    } catch (error) {
+      const isOversize =
+        error instanceof Error && error.message === "oversize";
+      return new Response(
+        JSON.stringify({ status: isOversize ? "invalid" : "unavailable" }),
+        {
+          status: isOversize ? 413 : 503,
+          headers,
+        },
+      );
+    }
+    try {
+      const clientIp =
+        request.headers.get("cf-connecting-ip")?.trim() || undefined;
+      const result = await submit(raw, clientIp);
       if (result.status === 429) headers["Retry-After"] = "3600";
       return new Response(JSON.stringify(result.body), {
         status: result.status,
         headers,
       });
     } catch {
-      return new Response(JSON.stringify({ status: "invalid" }), {
-        status: 413,
+      return new Response(JSON.stringify({ status: "unavailable" }), {
+        status: 503,
         headers,
       });
     }

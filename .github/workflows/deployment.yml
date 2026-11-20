@@ -11,8 +11,8 @@ on:
         options:
           - snapshot
           - cloudinary
-      rollback_run_id:
-        description: "Optional GitHub Actions run ID to roll back to an existing release artifact (leave empty to build fresh)"
+      git_ref:
+        description: "Optional Git commit SHA or tag to deploy/roll back to (leave empty for current branch HEAD)"
         required: false
         default: ""
         type: string
@@ -20,7 +20,6 @@ on:
 permissions:
   id-token: write
   contents: read
-  actions: read
 
 jobs:
   deploy:
@@ -29,63 +28,41 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.git_ref }}
 
       - name: Set up Node.js 24 LTS
-        if: ${{ inputs.rollback_run_id == '' }}
         uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
           cache: npm
 
       - name: Install dependencies
-        if: ${{ inputs.rollback_run_id == '' }}
         run: npm ci
 
       - name: Lint, typecheck, and run unit tests
-        if: ${{ inputs.rollback_run_id == '' }}
         run: |
           npm run lint
           npm run typecheck
           npm test
 
       - name: Build production static export and API
-        if: ${{ inputs.rollback_run_id == '' }}
         env:
           PHOTO_SOURCE: ${{ inputs.photo_source }}
           SITE_ORIGIN: https://lanafox.eu
           NEXT_PUBLIC_API_BASE_URL: https://api.lanafox.eu
-          NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME: ${{ vars.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || secrets.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME }}
+          NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME: ${{ secrets.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || vars.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME }}
           CLOUDINARY_URL: ${{ secrets.CLOUDINARY_URL }}
         run: npm run build
 
       - name: Assemble release artifacts
-        if: ${{ inputs.rollback_run_id == '' }}
         run: npm run package:release
-
-      - name: Upload release bundle artifact
-        if: ${{ inputs.rollback_run_id == '' }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: lanafox-release-${{ github.sha }}
-          path: artifacts/
-          retention-days: 30
-
-      - name: Download existing release artifact for rollback
-        if: ${{ inputs.rollback_run_id != '' }}
-        uses: actions/download-artifact@v4
-        with:
-          run-id: ${{ inputs.rollback_run_id }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          pattern: lanafox-release-*
-          merge-multiple: true
-          path: artifacts/
 
       - name: Verify release manifest
         run: |
           test -f artifacts/release.json
           test -f artifacts/web/staticwebapp.config.json
           test -f artifacts/api/host.json
-          cat artifacts/release.json
 
       - name: Azure login via Federated OIDC
         uses: azure/login@v2
@@ -94,13 +71,37 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
+      - name: Register log masks for Azure resource hostnames
+        env:
+          SWA_DEFAULT_HOSTNAME: ${{ secrets.AZURE_SWA_DEFAULT_HOSTNAME }}
+        run: |
+          set +x
+          if [ -n "$SWA_DEFAULT_HOSTNAME" ]; then
+            echo "::add-mask::$SWA_DEFAULT_HOSTNAME"
+            swa_stem="${SWA_DEFAULT_HOSTNAME%%.*}"
+            if [ -n "$swa_stem" ]; then
+              echo "::add-mask::$swa_stem"
+            fi
+          fi
+          for val in $(az functionapp list --query "[].[defaultHostName, resourceGroup, hostNames[]]" -o tsv 2>/dev/null) $(az staticwebapp list --query "[].defaultHostname" -o tsv 2>/dev/null); do
+            if [ -n "$val" ] && [ "$val" != "api.lanafox.eu" ] && [ "$val" != "lanafox.eu" ]; then
+              echo "::add-mask::$val"
+              stem="${val%%.*}"
+              if [ -n "$stem" ]; then
+                echo "::add-mask::$stem"
+              fi
+            fi
+          done
+
       - name: Deploy API to Azure Functions Flex Consumption
         uses: Azure/functions-action@v1
         with:
-          app-name: lanafox-production-api
+          app-name: ${{ secrets.AZURE_FUNCTION_APP_NAME }}
           package: artifacts/api
 
       - name: Deploy static export to Azure Static Web Apps
+        env:
+          SWA_DEFAULT_HOSTNAME: ${{ secrets.AZURE_SWA_DEFAULT_HOSTNAME }}
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.SWA_DEPLOYMENT_TOKEN }}

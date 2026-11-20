@@ -40,6 +40,7 @@ export function HeroCarousel({ locale }: { locale: Locale }) {
 
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [loadedAll, setLoadedAll] = useState(false);
 
   ReactDOM.preload(slides[0]!.src, {
     as: "image",
@@ -67,15 +68,28 @@ export function HeroCarousel({ locale }: { locale: Locale }) {
 
   useEffect(() => {
     if (paused) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const preloadTimer = window.setTimeout(() => {
+      setLoadedAll(true);
+    }, 2500);
     const id = window.setInterval(() => {
+      setLoadedAll(true);
       setIndex((prev) => (prev + 1) % slides.length);
     }, 6000);
-    return () => window.clearInterval(id);
+    return () => {
+      window.clearTimeout(preloadTimer);
+      window.clearInterval(id);
+    };
   }, [paused, slides.length]);
 
-  const goPrev = () =>
+  const goPrev = () => {
+    setLoadedAll(true);
     setIndex((prev) => (prev - 1 + slides.length) % slides.length);
-  const goNext = () => setIndex((prev) => (prev + 1) % slides.length);
+  };
+  const goNext = () => {
+    setLoadedAll(true);
+    setIndex((prev) => (prev + 1) % slides.length);
+  };
 
   const carouselLabel =
     locale === "uk" ? "Обрані фотографії" : "Featured photographs";
@@ -108,6 +122,7 @@ export function HeroCarousel({ locale }: { locale: Locale }) {
         {slides.map((slide, i) => {
           const [w, h] = getImageDimensions(slide.src);
           const active = i === index;
+          const shouldLoad = i === 0 || active || loadedAll;
           return (
             <figure
               key={slide.src}
@@ -117,25 +132,33 @@ export function HeroCarousel({ locale }: { locale: Locale }) {
               <picture>
                 <source
                   type="image/avif"
-                  srcSet={optimizedImageSrcSet(
-                    slide.baseName,
-                    [640, 1080, 1600],
-                    "avif",
-                  )}
-                  sizes="100vw"
+                  srcSet={
+                    shouldLoad
+                      ? optimizedImageSrcSet(
+                          slide.baseName,
+                          [640, 1080, 1600],
+                          "avif",
+                        )
+                      : undefined
+                  }
+                  sizes={shouldLoad ? "100vw" : undefined}
                 />
                 <source
                   type="image/webp"
-                  srcSet={optimizedImageSrcSet(
-                    slide.baseName,
-                    [640, 1080, 1600],
-                    "webp",
-                  )}
-                  sizes="100vw"
+                  srcSet={
+                    shouldLoad
+                      ? optimizedImageSrcSet(
+                          slide.baseName,
+                          [640, 1080, 1600],
+                          "webp",
+                        )
+                      : undefined
+                  }
+                  sizes={shouldLoad ? "100vw" : undefined}
                 />
                 <img
                   className={styles.image}
-                  src={slide.src}
+                  src={shouldLoad ? slide.src : undefined}
                   alt={slide.alt}
                   width={w}
                   height={h}
@@ -174,6 +197,7 @@ export function HeroCarousel({ locale }: { locale: Locale }) {
               aria-current={i === index ? "true" : undefined}
               onClick={() => {
                 setPaused(true);
+                setLoadedAll(true);
                 setIndex(i);
               }}
             />

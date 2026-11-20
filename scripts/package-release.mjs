@@ -12,8 +12,8 @@ const apiArtifactDir = path.join(artifactsDir, "api");
 
 const FORBIDDEN_PATTERNS = [
   "cloudinary://",
-  "API_HASH_SECRET=",
-  "CONTACT_HASH_SECRET=",
+  "API_HASH_SECRET",
+  "CONTACT_HASH_SECRET",
 ];
 
 async function ensureWebOut() {

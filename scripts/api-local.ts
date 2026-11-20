@@ -26,6 +26,7 @@ const handler = createHttpHandler(submit, [
 
 createServer(async (req, res) => {
   try {
+    await store.cleanup(Date.now());
     if (req.url === "/__test/inbox" && req.method === "GET") {
       if (
         req.headers.origin ||

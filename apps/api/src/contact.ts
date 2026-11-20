@@ -15,9 +15,18 @@ export interface RecordValue {
 }
 
 export interface Store {
-  claim(id: string, value: RecordValue): Promise<RecordValue | null>;
+  claim(
+    id: string,
+    value: RecordValue,
+    nowMs?: number,
+  ): Promise<RecordValue | null>;
   finish(id: string, state: SendState): Promise<void>;
-  consume(key: string, limit: number, expires: number): Promise<boolean>;
+  consume(
+    key: string,
+    limit: number,
+    expires: number,
+    nowMs?: number,
+  ): Promise<boolean>;
   cleanup(now: number): Promise<void>;
 }
 
@@ -58,7 +67,10 @@ export function createService(
     }
     limitedKeys.set(key, expires);
   }
-  return async function submit(raw: string): Promise<Result> {
+  return async function submit(
+    raw: string,
+    clientIp?: string,
+  ): Promise<Result> {
     if (Buffer.byteLength(raw) > MAX_BODY_BYTES)
       return { status: 413, body: { status: "invalid" } };
     let input: unknown;
@@ -75,21 +87,32 @@ export function createService(
     const hour = Math.floor(time / 3600000);
     const globalKey = `global-${hour}`;
     const senderKey = `sender-${hash(data.email)}-${hour}`;
+    const normalizedIp = clientIp?.trim();
+    const ipKey = normalizedIp ? `ip-${hash(normalizedIp)}-${hour}` : null;
     if (!recentIds.has(data.submissionId)) {
       const globalBlockedUntil = limitedKeys.get(globalKey) ?? 0;
       const senderBlockedUntil = limitedKeys.get(senderKey) ?? 0;
-      if (globalBlockedUntil > time || senderBlockedUntil > time)
+      const ipBlockedUntil = ipKey ? (limitedKeys.get(ipKey) ?? 0) : 0;
+      if (
+        globalBlockedUntil > time ||
+        senderBlockedUntil > time ||
+        ipBlockedUntil > time
+      )
         return { status: 429, body: { status: "limited" } };
     }
     const payloadHash = hash(
       JSON.stringify({ ...data, submissionId: undefined }),
     );
     try {
-      const existing = await store.claim(data.submissionId, {
-        hash: payloadHash,
-        state: "pending",
-        expires: time + CLAIM_TTL_MS,
-      });
+      const existing = await store.claim(
+        data.submissionId,
+        {
+          hash: payloadHash,
+          state: "pending",
+          expires: time + CLAIM_TTL_MS,
+        },
+        time,
+      );
       if (recentIds.size >= 200) {
         const oldest = recentIds.values().next().value;
         if (oldest) recentIds.delete(oldest);
@@ -102,28 +125,46 @@ export function createService(
           return { status: 202, body: { status: "accepted" } };
         if (existing.state === "limited")
           return { status: 429, body: { status: "limited" } };
-        return { status: 409, body: { status: "pending" } };
-      }
-      const expires = time + COUNTER_TTL_MS;
-      const globalAllowed = await store.consume(
-        globalKey,
-        GLOBAL_HOURLY_LIMIT,
-        expires,
-      );
-      if (!globalAllowed) {
-        markLimited(globalKey, expires, time);
-        await store.finish(data.submissionId, "limited");
-        return { status: 429, body: { status: "limited" } };
-      }
-      const senderAllowed = await store.consume(
-        senderKey,
-        SENDER_HOURLY_LIMIT,
-        expires,
-      );
-      if (!senderAllowed) {
-        markLimited(senderKey, expires, time);
-        await store.finish(data.submissionId, "limited");
-        return { status: 429, body: { status: "limited" } };
+        if (existing.state === "pending")
+          return { status: 409, body: { status: "pending" } };
+        await store.finish(data.submissionId, "pending");
+      } else {
+        const expires = time + COUNTER_TTL_MS;
+        if (ipKey) {
+          const ipAllowed = await store.consume(
+            ipKey,
+            SENDER_HOURLY_LIMIT,
+            expires,
+            time,
+          );
+          if (!ipAllowed) {
+            markLimited(ipKey, expires, time);
+            await store.finish(data.submissionId, "limited");
+            return { status: 429, body: { status: "limited" } };
+          }
+        }
+        const senderAllowed = await store.consume(
+          senderKey,
+          SENDER_HOURLY_LIMIT,
+          expires,
+          time,
+        );
+        if (!senderAllowed) {
+          markLimited(senderKey, expires, time);
+          await store.finish(data.submissionId, "limited");
+          return { status: 429, body: { status: "limited" } };
+        }
+        const globalAllowed = await store.consume(
+          globalKey,
+          GLOBAL_HOURLY_LIMIT,
+          expires,
+          time,
+        );
+        if (!globalAllowed) {
+          markLimited(globalKey, expires, time);
+          await store.finish(data.submissionId, "limited");
+          return { status: 429, body: { status: "limited" } };
+        }
       }
       try {
         await mailer.send(data);
@@ -142,9 +183,9 @@ export function createService(
 export class MemoryStore implements Store {
   readonly records = new Map<string, RecordValue>();
   readonly counts = new Map<string, { count: number; expires: number }>();
-  async claim(id: string, value: RecordValue) {
+  async claim(id: string, value: RecordValue, nowMs?: number) {
     const old = this.records.get(id);
-    if (old) return old;
+    if (old && (nowMs === undefined || old.expires > nowMs)) return old;
     this.records.set(id, { ...value });
     return null;
   }
@@ -153,8 +194,12 @@ export class MemoryStore implements Store {
     if (!item) throw Error("Missing claim");
     item.state = state;
   }
-  async consume(key: string, limit: number, expires: number) {
-    const item = this.counts.get(key) || { count: 0, expires };
+  async consume(key: string, limit: number, expires: number, nowMs?: number) {
+    const existing = this.counts.get(key);
+    const item =
+      existing && (nowMs === undefined || existing.expires > nowMs)
+        ? existing
+        : { count: 0, expires };
     if (item.count >= limit) return false;
     item.count++;
     this.counts.set(key, item);

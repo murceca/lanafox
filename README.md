@@ -11,7 +11,7 @@
 - **Styling:** Modern CSS Modules, CSS Grid/Flexbox, reduced-motion support
 - **Images & Gallery:** Cloudinary responsive delivery + `sharp` build-time AVIF/WebP local derivatives with `<link rel="preload" as="image">` hero LCP prioritization
 - **API Service:** Modular TypeScript API (`@lanafox/api`) on Azure Functions v4 (`FC1` Flex Consumption, Node 24 LTS) with shared Zod runtime contracts (`@lanafox/contracts`), Azure Table Storage (`ApiState`) + Azure Communication Services Email via Managed Identity, HMAC fingerprinting, 24-hour idempotency, and hourly rate limits (`10/hour` global, `3/hour` per sender)
-- **Edge & Infrastructure:** Cloudflare Free DNS/CDN/WAF + Azure Static Web Apps Free + Azure Functions Flex Consumption (see [`infra/README.md`](infra/README.md))
+- **Edge & Infrastructure:** Cloudflare Free DNS/CDN/WAF + Azure Static Web Apps Free + Azure Functions Flex Consumption
 - **Runtime:** Node.js 24 LTS (pinned via [`.nvmrc`](.nvmrc))
 - **Testing:** Node native unit/contract tests (`node --test`) + Playwright E2E browser suite
 
@@ -28,7 +28,6 @@
 │   └── contracts/      # @lanafox/contracts — Shared TypeScript types & Zod schemas
 ├── deployment/
 │   └── api/            # Isolated minimal production manifest & lockfile for Azure Functions
-├── infra/              # Manual Azure Portal & Cloudflare setup guide + reference Terraform (*.tf)
 ├── scripts/            # Image optimizer, export verifier, release packager, preview & mock API
 └── tests/
     ├── unit/           # Unit & contract tests

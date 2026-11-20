@@ -26,6 +26,13 @@ export function ContactForm({ locale }: { locale: Locale }) {
     "idle",
   );
 
+  function updateDraftField(setter: (value: string) => void, value: string) {
+    setter(value);
+    if (status === "error") {
+      setSubmissionId(createDraftId());
+    }
+  }
+
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (status === "pending") return;
@@ -53,6 +60,9 @@ export function ContactForm({ locale }: { locale: Locale }) {
       });
 
       if (!res.ok) {
+        if (res.status === 409 || res.status === 429) {
+          setSubmissionId(createDraftId());
+        }
         setStatus("error");
         return;
       }
@@ -107,7 +117,7 @@ export function ContactForm({ locale }: { locale: Locale }) {
                 maxLength={100}
                 autoComplete="name"
                 value={name}
-                onChange={(e) => setName(e.target.value)}
+                onChange={(e) => updateDraftField(setName, e.target.value)}
               />
             </div>
 
@@ -124,7 +134,7 @@ export function ContactForm({ locale }: { locale: Locale }) {
                 maxLength={254}
                 autoComplete="email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => updateDraftField(setEmail, e.target.value)}
               />
             </div>
 
@@ -141,7 +151,7 @@ export function ContactForm({ locale }: { locale: Locale }) {
                 minLength={10}
                 maxLength={5000}
                 value={message}
-                onChange={(e) => setMessage(e.target.value)}
+                onChange={(e) => updateDraftField(setMessage, e.target.value)}
               />
             </div>
 

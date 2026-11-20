@@ -9,7 +9,7 @@ This file provides repository-wide instructions for AI coding assistants and mus
 - **Completed:**
   - **Stages 1–4** (*TypeScript migration — merged*)
   - **Stages 5–8** (*React + Next.js App Router static export, modern CSS Modules, responsive AVIF/WebP image pipeline, unit tests, and Playwright E2E tests — merged*)
-  - **Stages 9–12** (*Azure Functions v4 HTTP & timer entry points, Azure Table Storage + ACS Email Managed Identity adapters, `staticwebapp.config.json`, isolated `deployment/api` lockfile + `scripts/package-release.mjs`, `infra/README.md` manual Portal/Cloudflare setup guide + reference Terraform `infra/*.tf`, and GitHub Actions CI/CD workflows — committed*)
+  - **Stages 9–12** (*Azure Functions v4 HTTP & timer entry points, Azure Table Storage + ACS Email Managed Identity adapters, `staticwebapp.config.json`, isolated `deployment/api` lockfile + `scripts/package-release.mjs`, local `.ai-wiki/azure-setup-guide.md` & `.ai-wiki/infra/` setup documentation, and GitHub Actions CI/CD workflows — committed*)
   - **Stage 13** (*Polish the project: retired legacy `app/` baseline, removed pre-launch draft banners and local-preview UI text, enabled default `index, follow` SEO robots directive, fixed web manifest/browserconfig icon paths, added responsive AVIF hero `<link rel="preload" as="image">` and static image cache headers, verified mobile LCP ≤ 2.5 s / CLS ≤ 0.1, and added one-click artifact rollback to `deployment.yml`*)
   - **Stage 14** (*Final Human-Led Verification — Checkpoint 4 / Final Release Gate — approved*)
 - **Current Status:** **Modernization Complete (Stages 1–14)**.
@@ -22,9 +22,8 @@ This file provides repository-wide instructions for AI coding assistants and mus
 - **`apps/api` (`@lanafox/api`):** Modular TypeScript API service (`createHttpHandler`, `readBounded`, `createService`, `MemoryStore`) plus Azure Functions v4 adapters (`TableStore` using `@azure/data-tables` with ETag concurrency, `AcsMailer` using `@azure/communication-email` with HTML escaping, `createAzureContactHandler` for `POST`/`OPTIONS /api/contact`, and `createAzureCleanupHandler` for hourly `cleanupApiState` timer trigger). Enforces HMAC hashing, 24-hour idempotency, `10/hour` global and `3/hour` per-sender rate limits, and in-memory flood pre-checks (`limitedKeys`).
 - **`apps/web` (`@lanafox/web`):** React 19 + Next.js 16 App Router static export (`output: 'export'`, `trailingSlash: true`) with CSS Modules, bilingual `/en/` and `/uk/` routes, responsive AVIF/WebP local derivatives (`scripts/optimize-images.mjs`), 36-photo uncropped Cloudinary gallery + accessible lightbox, `staticwebapp.config.json`, and accessible contact form. See [`apps/web/AGENTS.md`](./apps/web/AGENTS.md).
 - **`deployment/api` & `scripts/package-release.mjs`:** Isolated production lockfile (`0` vulnerabilities) and release bundler producing verifiable `artifacts/web/`, `artifacts/api/`, and `artifacts/release.json`.
-- **`infra/`:** Step-by-step manual Azure Portal & Cloudflare setup guide ([`infra/README.md`](./infra/README.md)), release rollback instructions, and matching reference Terraform configuration (`infra/*.tf`) for the single-`production` low-cost architecture.
 - **`tests/`:** Automated unit/contract tests (`tests/unit/*.test.ts`) and Playwright browser E2E suite (`tests/e2e/*.spec.ts`).
-- **`.ai-wiki/`:** Persistent local knowledge base (gitignored). **Never revert, delete, or overwrite `.ai-wiki/`.**
+- **`.ai-wiki/`:** Persistent local knowledge base and private infrastructure runbooks (`.ai-wiki/azure-setup-guide.md`, `.ai-wiki/infra/`, gitignored). **Never revert, delete, or overwrite `.ai-wiki/`.**
 
 | Service | Port | Command | Notes |
 | :--- | :--- | :--- | :--- |

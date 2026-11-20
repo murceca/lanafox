@@ -57,7 +57,11 @@ export class TableStore implements Store {
     }
   }
 
-  async claim(id: string, value: RecordValue): Promise<RecordValue | null> {
+  async claim(
+    id: string,
+    value: RecordValue,
+    nowMs?: number,
+  ): Promise<RecordValue | null> {
     try {
       await this.client.createEntity({
         partitionKey: "claim",
@@ -70,10 +74,25 @@ export class TableStore implements Store {
     } catch (error) {
       if (getStatusCode(error) === 409) {
         const existing = await this.client.getEntity("claim", id);
+        const existingExpires = Number(existing.expires ?? 0);
+        if (nowMs !== undefined && existingExpires <= nowMs) {
+          await this.client.updateEntity(
+            {
+              partitionKey: "claim",
+              rowKey: id,
+              hash: value.hash,
+              state: value.state,
+              expires: value.expires,
+            },
+            "Replace",
+            { etag: typeof existing.etag === "string" ? existing.etag : undefined },
+          );
+          return null;
+        }
         return {
           hash: String(existing.hash ?? ""),
           state: (existing.state as SendState) ?? "pending",
-          expires: Number(existing.expires ?? 0),
+          expires: existingExpires,
         };
       }
       throw error;
@@ -91,11 +110,18 @@ export class TableStore implements Store {
     );
   }
 
-  async consume(key: string, limit: number, expires: number): Promise<boolean> {
+  async consume(
+    key: string,
+    limit: number,
+    expires: number,
+    nowMs?: number,
+  ): Promise<boolean> {
     for (let attempt = 0; attempt < 8; attempt++) {
       try {
         const existing = await this.client.getEntity("rate", key);
-        const currentCount = Number(existing.count ?? 0);
+        const existingExpires = Number(existing.expires ?? 0);
+        const isExpired = nowMs !== undefined && existingExpires <= nowMs;
+        const currentCount = isExpired ? 0 : Number(existing.count ?? 0);
         if (currentCount >= limit) {
           return false;
         }
@@ -147,7 +173,13 @@ export class TableStore implements Store {
     });
     for await (const entity of entities) {
       if (entity.partitionKey && entity.rowKey) {
-        await this.client.deleteEntity(entity.partitionKey, entity.rowKey);
+        try {
+          await this.client.deleteEntity(entity.partitionKey, entity.rowKey);
+        } catch (deleteError) {
+          if (getStatusCode(deleteError) !== 404) {
+            throw deleteError;
+          }
+        }
       }
     }
   }

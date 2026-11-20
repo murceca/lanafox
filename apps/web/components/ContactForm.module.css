@@ -7,12 +7,22 @@
   padding: 3.5rem 1rem 4.5rem;
   background-color: #2f3336;
   background-image: image-set(
-    url("/optimized/bg-contact-1440.avif") type("image/avif"),
-    url("/optimized/bg-contact-1440.webp") type("image/webp"),
+    url("/optimized/bg-contact-768.avif") type("image/avif"),
+    url("/optimized/bg-contact-768.webp") type("image/webp"),
     url("/images/bg-contact.jpg") type("image/jpeg")
   );
   background-size: cover;
   background-position: center;
+}
+
+@media (min-width: 769px) {
+  .heroBackdrop {
+    background-image: image-set(
+      url("/optimized/bg-contact-1440.avif") type("image/avif"),
+      url("/optimized/bg-contact-1440.webp") type("image/webp"),
+      url("/images/bg-contact.jpg") type("image/jpeg")
+    );
+  }
 }
 
 .card {

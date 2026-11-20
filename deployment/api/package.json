@@ -8,8 +8,8 @@
   },
   "dependencies": {
     "@azure/communication-email": "1.1.0",
-    "@azure/data-tables": "13.3.0",
-    "@azure/functions": "4.11.0",
+    "@azure/data-tables": "13.3.2",
+    "@azure/functions": "4.17.1",
     "@azure/identity": "4.14.1",
     "zod": "4.6.7"
   }
